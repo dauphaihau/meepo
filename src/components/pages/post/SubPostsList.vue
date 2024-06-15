@@ -4,9 +4,9 @@ import { UserGroupIcon } from '@heroicons/vue/20/solid';
 import Loading from '@core/components/Loading.vue';
 import { useGetDetailPost, useGetPosts } from '@services/post';
 import { POST_FILTER_BY } from '@config/const';
-import { IParamsGetPosts } from '@/types/post';
+import type { IParamsGetPosts } from '@/types/post';
 import SubPost from '@components/pages/post/SubPost.vue';
-import { IUser } from '@/types/user.ts';
+import type { IUser } from '@/types/user.ts';
 
 const route = useRoute();
 
@@ -72,10 +72,10 @@ function onScroll() {
   <div class="flex flex-col">
     <div
       v-if="detailPost?.post && !detailPost.post.is_current_user_can_comment"
-      class="md:border-t border-b"
+      class="border-b md:border-t"
     >
-      <div class="flex gap-4 m-5 px-3 py-3 bg-zinc-100 rounded-lg">
-        <UserGroupIcon class="h-9 w-9 rounded-full bg-zinc-200 p-2 text-black" />
+      <div class="m-5 flex gap-4 rounded-lg bg-zinc-100 p-3">
+        <UserGroupIcon class="size-9 rounded-full bg-zinc-200 p-2 text-black" />
         <div>
           <div class="font-bold">
             Who can reply?
@@ -92,7 +92,7 @@ function onScroll() {
 
     <div
       v-if="posts && posts.length > 0"
-      class="flex flex-col relative z-[1]"
+      class="relative z-[1] flex flex-col"
     >
       <div
         v-for="post in posts"

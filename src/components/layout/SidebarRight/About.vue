@@ -10,7 +10,7 @@ import {
     class="relative"
   >
     <PopoverButton
-      class="focus:outline-none w-fit text-zinc-500 text-sm hover:underline hover:underline-offset-2"
+      class="w-fit text-sm text-zinc-500 hover:underline hover:underline-offset-2 focus:outline-none"
     >
       About
     </PopoverButton>
@@ -24,10 +24,10 @@ import {
       leave-from-class="translate-y-0 opacity-100"
       leave-to-class="translate-y-1 opacity-0"
     >
-      <PopoverPanel class="absolute z-[1] right-0 bottom-8 translate-x-44 transform ">
+      <PopoverPanel class="absolute bottom-8 right-0 z-[1] translate-x-44">
         <div
-          class="group relative flex rounded-2xl bg-zinc-50 transition-shadow
-           shadow-md hover:shadow-zinc-900/5 dark:bg-white/2.5 dark:hover:shadow-black/5 w-[390px]"
+          class="dark:bg-white/2.5 group relative flex w-[390px] rounded-2xl
+           bg-zinc-50 shadow-md transition-shadow hover:shadow-zinc-900/5 dark:hover:shadow-black/5"
         >
           <div class="pointer-events-none">
             <div
@@ -36,8 +36,8 @@ import {
             >
               <svg
                 aria-hidden="true"
-                class="absolute inset-x-0 inset-y-[-30%] h-[160%] w-full skew-y-[-18deg]
-                 fill-black/[0.02] stroke-black/5 dark:fill-white/1 dark:stroke-white/2.5"
+                class="dark:fill-white/1 dark:stroke-white/2.5 absolute inset-x-0 inset-y-[-30%] h-[160%]
+                 w-full skew-y-[-18deg] fill-black/[0.02] stroke-black/5"
               >
                 <defs>
                   <pattern
@@ -98,9 +98,9 @@ import {
             >
               <svg
                 aria-hidden="true"
-                class="absolute inset-x-0 inset-y-[-30%] h-[160%]
-                 w-full skew-y-[-18deg] fill-black/50 stroke-black/70
-                  dark:fill-white/2.5 dark:stroke-white/10"
+                class="dark:fill-white/2.5 absolute inset-x-0 inset-y-[-30%]
+                 h-[160%] w-full skew-y-[-18deg] fill-black/50
+                  stroke-black/70 dark:stroke-white/10"
               >
                 <defs>
                   <pattern
@@ -148,24 +148,24 @@ import {
           </div>
 
           <div
-            class="absolute inset-0 rounded-2xl ring-zinc-900/5
-          ring-1 ring-inset ring-zinc-900/7.5 group-hover:ring-zinc-900/10
+            class="ring-zinc-900/7.5 absolute inset-0 rounded-2xl
+          ring-1 ring-inset ring-zinc-900/5 group-hover:ring-zinc-900/10
           dark:ring-white/10 dark:group-hover:ring-white/20"
           />
 
-          <div class="relative rounded-2xl px-4 pb-4 pt-4">
+          <div class="relative rounded-2xl p-4">
             <div
-              class="flex h-7 w-7 items-center justify-center rounded-full
+              class="dark:bg-white/7.5 flex size-7 items-center justify-center rounded-full
              bg-zinc-900/5 ring-1 ring-zinc-900/25 backdrop-blur-[2px]
-             transition duration-300 group-hover:bg-white/50 group-hover:ring-zinc-900/25 dark:bg-white/7.5
-              dark:ring-white/15 dark:group-hover:bg-emerald-300/10 dark:group-hover:ring-emerald-400"
+             transition duration-300 group-hover:bg-white/50 group-hover:ring-zinc-900/25 dark:ring-white/15
+              dark:group-hover:bg-emerald-300/10 dark:group-hover:ring-emerald-400"
             >
               <svg
                 viewBox="0 0 20 20"
                 aria-hidden="true"
-                class="h-5 w-5 fill-zinc-700/10 stroke-zinc-700
-                 transition-colors duration-300 group-hover:stroke-zinc-900
-                  dark:fill-white/10 dark:stroke-zinc-400 dark:group-hover:fill-emerald-300/10 dark:group-hover:stroke-emerald-400"
+                class="size-5 fill-zinc-700/10 stroke-zinc-700 transition-colors
+                 duration-300 group-hover:stroke-zinc-900 dark:fill-white/10
+                  dark:stroke-zinc-400 dark:group-hover:fill-emerald-300/10 dark:group-hover:stroke-emerald-400"
               >
                 <path
                   stroke-linecap="round"
@@ -193,7 +193,7 @@ import {
             </p>
             <p class="mt-1 text-sm text-zinc-600 dark:text-zinc-400">
               Reach me out via <a
-                class=" underline-offset-2 underline hover:text-black"
+                class=" underline underline-offset-2 hover:text-black"
                 href="mailto:hautran.job@outlook.com"
               >hautran.job@outlook.com</a>
             </p>

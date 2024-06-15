@@ -1,6 +1,6 @@
 <script setup lang="ts">
 
-type Tab = { id: number | string, name: string };
+interface Tab { id: number | string, name: string }
 
 interface IProps {
   tabs?: Tab[]
@@ -12,9 +12,7 @@ const {
   defaultTab,
 } = defineProps<IProps>();
 
-const emit = defineEmits<{
-  (e: 'on-change-tab', value: Tab['id']): void
-}>();
+const emit = defineEmits<(e: 'on-change-tab', value: Tab['id']) => void>();
 
 const defaultTabComputed = computed(() => {
   if (defaultTab) {

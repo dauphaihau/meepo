@@ -1,5 +1,5 @@
 import { apiHelper } from '@/lib/axios';
-import {
+import type {
   ICreatePost, IHashtag, IParamsGetPosts, IPost,
   IResponseGetDetailPost, IResponseGetPosts, IUpdatePost
 } from '@/types/post';

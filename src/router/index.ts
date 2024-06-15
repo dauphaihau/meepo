@@ -1,8 +1,9 @@
-import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
+import type { RouteRecordRaw } from 'vue-router';
+import { createRouter, createWebHistory } from 'vue-router';
 import { PAGE_PATHS } from '@config/const.ts';
 import { useAuthStore } from '@stores/auth.ts';
 
-const routes: Array<RouteRecordRaw> = [
+export const routes: RouteRecordRaw[] = [
   {
     path: PAGE_PATHS.HOME,
     name: 'home',

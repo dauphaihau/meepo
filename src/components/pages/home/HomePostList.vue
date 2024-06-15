@@ -2,7 +2,7 @@
 import Loading from '@core/components/Loading.vue';
 import { useGetPosts } from '@services/post';
 import { POST_FILTER_BY } from '@config/const';
-import { IParamsGetPosts } from '@/types/post';
+import type { IParamsGetPosts } from '@/types/post';
 import HomePost from '@components/pages/home/HomePost.vue';
 
 interface IProps {
@@ -72,11 +72,12 @@ function onScroll() {
   <div class="flex flex-col">
     <div
       v-if="posts && posts.length > 0"
-      class="flex flex-col relative z-[1]"
+      class="relative z-[1] flex flex-col"
     >
       <div
         v-for="post in posts"
         :key="post.id"
+        data-test="post"
       >
         <HomePost
           class="border-b"
@@ -87,6 +88,7 @@ function onScroll() {
 
     <div
       v-if="isFetching || isFetchingNextPage"
+      id="loading"
       class="flex-center min-h-[35vh]"
     >
       <Loading

@@ -45,10 +45,10 @@ const {
         leave-from="opacity-100"
         leave-to="opacity-0"
       >
-        <div class="fixed inset-0 bg-zinc-300 bg-opacity-50" />
+        <div class="fixed inset-0 bg-zinc-300/50" />
       </TransitionChild>
 
-      <div class="fixed inset-0 overflow-y-auto flex justify-center text-center">
+      <div class="fixed inset-0 flex justify-center overflow-y-auto text-center">
         <!--                        as="template"-->
         <TransitionChild
           class="w-full md:w-auto"
@@ -70,13 +70,13 @@ const {
             <div>
               <div
                 v-if="title"
-                class="absolute top-3 left-4 text-xl text-black max-w-sm truncate font-medium"
+                class="absolute left-4 top-3 max-w-sm truncate text-xl font-medium text-black"
               >
                 {{ title }}
               </div>
               <XMarkIcon
                 v-if="!hideCloseBtn"
-                class="absolute top-2 right-2 text-black h-9 w-9 cursor-pointer hover:bg-zinc-100 rounded-full p-2 animate"
+                class="animate absolute right-2 top-2 size-9 cursor-pointer rounded-full p-2 text-black hover:bg-zinc-100"
                 @click="close"
               />
             </div>

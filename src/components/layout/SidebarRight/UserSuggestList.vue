@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useGetUsers } from '@services/user';
-import { IParamsGetUsers, UserInGetList } from '@/types/user';
+import type { IParamsGetUsers, UserInGetList } from '@/types/user';
 import UserSuggest from '@components/layout/SidebarRight/UserSuggest.vue';
 import Loading from '@core/components/Loading.vue';
 import { useAuthStore } from '@stores/auth.ts';

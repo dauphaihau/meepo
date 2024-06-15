@@ -24,7 +24,7 @@ const { isLoggedIn, user } = storeToRefs(useAuthStore());
   <nav>
     <router-link
       :to="isLoggedIn ? PAGE_PATHS.HOME : PAGE_PATHS.EXPLORE "
-      class="font-black text-black font-[Alphabets4] py-2 px-3 lg:px-4 text-4xl "
+      class="px-3 py-2 font-[Alphabets4] text-4xl font-black text-black lg:px-4 "
     >
       m
     </router-link>

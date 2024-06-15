@@ -5,7 +5,7 @@ import {
 
 import { useCreatePost } from '@/services/post';
 import Button from '@/core/components/Button.vue';
-import { ICreateSubPost } from '@/types/post';
+import type { ICreateSubPost } from '@/types/post';
 import { useUploadImage } from '@/services/common';
 import { useQueryClient } from '@tanstack/vue-query';
 import { StatusCodes } from 'http-status-codes';
@@ -141,27 +141,27 @@ watch(content, () => {
 <template>
   <div class="hidden md:block">
     <div
-      class="flex flex-row px-4 border-t py-3"
+      class="flex flex-row border-t px-4 py-3"
       :class="{
         'border-b': !isFocus,
       }"
     >
       <!--         Avatar-->
-      <div class="mr-4 mt-2 basis-11 h-full">
+      <div class="mr-4 mt-2 h-full basis-11">
         <div
           class="h-full "
         >
           <img
             v-if="authStore.user?.avatar_url"
             :src="authStore.user?.avatar_url"
-            class="rounded-full h-10 w-10 bg-black cursor-pointer"
+            class="size-10 cursor-pointer rounded-full bg-black"
             alt="avatar"
             @click="router.push('/user/' + authStore.user?.username)"
           >
           <img
             v-else
             src="@/assets/default-avatar.png"
-            class="rounded-full h-10 w-10 bg-black cursor-pointer"
+            class="size-10 cursor-pointer rounded-full bg-black"
             alt="avatar"
             @click="router.push('/user/' + authStore.user?.username)"
           >
@@ -170,8 +170,8 @@ watch(content, () => {
 
       <!--        Input -->
       <div class="w-full">
-        <div class="w-full max-h-[81vh] h-fit overflow-y-scroll">
-          <div class="flex flex-col gap-1 bg-white col-span-10 h-full">
+        <div class="h-fit max-h-[81vh] w-full overflow-y-scroll">
+          <div class="col-span-10 flex h-full flex-col gap-1 bg-white">
             <div class="mt-2 flex ">
               <textarea
                 id="content"
@@ -208,11 +208,11 @@ watch(content, () => {
                 class="h-auto w-full rounded-xl"
               >
               <div
-                class="rounded-full bg-black opacity-70 w-fit p-1
-                 absolute top-2 right-2 hover:opacity-50 transition ease-out duration-300"
+                class="absolute right-2 top-2 w-fit rounded-full
+                 bg-black p-1 opacity-70 transition duration-300 ease-out hover:opacity-50"
               >
                 <XMarkIcon
-                  class="h-5 w-5 cursor-pointer text-white"
+                  class="size-5 cursor-pointer text-white"
                   @click="deleteImage"
                 />
               </div>
@@ -225,10 +225,10 @@ watch(content, () => {
     <!--     Toolbar + submit btn     -->
     <div
       v-if="isFocus"
-      class="pl-[70px] pr-4 border-b"
+      class="border-b pl-[70px] pr-4"
     >
       <div
-        class="flex items-center justify-between gap-x-6 mb-2 w-full pt-2"
+        class="mb-2 flex w-full items-center justify-between gap-x-6 pt-2"
       >
         <div class="flex-center">
           <div class="flex items-center gap-1.5">

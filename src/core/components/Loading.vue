@@ -31,8 +31,8 @@ const props = withDefaults(defineProps<IProps>(), {
       viewBox="0 0 24 24"
     >
       <circle
-        class="opacity-25
-          stroke-[4]"
+        class="stroke-[4]
+          opacity-25"
         cx="12"
         cy="12"
         r="10"

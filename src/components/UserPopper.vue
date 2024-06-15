@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { Fn } from '@vueuse/core';
+import type { Fn } from '@vueuse/core';
 import { Popover, PopoverButton, PopoverPanel } from '@headlessui/vue';
 
 import Loading from '@core/components/Loading.vue';
-import { IResponseGetProfile, IUser } from '@/types/user';
+import type { IResponseGetProfile, IUser } from '@/types/user';
 import { useMutationGetProfileUser } from '@services/user';
 import ToggleFollowBtn from '@components/ToggleFollowBtn.vue';
 import { PAGE_PATHS } from '@config/const.ts';
@@ -104,7 +104,7 @@ watch(popoverHover, (value: boolean) => {
       >
         <PopoverButton
           :class="open ? '' : 'text-opacity-90'"
-          class="focus:outline-none inline-flex items-center"
+          class="inline-flex items-center focus:outline-none"
           @mouseover="(e: Event) => hoverPopover(e, open)"
           @mouseleave="closePopover(close)"
         >
@@ -120,14 +120,14 @@ watch(popoverHover, (value: boolean) => {
           leave-to-class="translate-y-1 opacity-0"
         >
           <PopoverPanel
-            class="absolute z-[3] bg-white rounded-xl mt-0.5
-             w-10 -translate-x-28 transform px-4 sm:px-0 lg:max-w-3xl"
+            class="absolute z-[3] mt-0.5 w-10 -translate-x-28
+             rounded-xl bg-white px-4 sm:px-0 lg:max-w-3xl"
             @mouseover.prevent="popoverHover = true"
             @mouseleave.prevent="closePopover(close)"
           >
             <div
-              class="overflow-hidden bg-white w-[300px] max-w-[300px]
-                     p-4 rounded-xl popper-shadow ring-1 ring-black ring-opacity-5"
+              class="popper-shadow w-[300px] max-w-[300px] overflow-hidden
+                     rounded-xl bg-white p-4 ring-1 ring-black/5"
             >
               <div
                 v-if="isPendingGetProfileUser"
@@ -140,7 +140,7 @@ watch(popoverHover, (value: boolean) => {
               </div>
               <div v-else>
                 <div v-if="user">
-                  <div class="flex justify-between mb-2">
+                  <div class="mb-2 flex justify-between">
                     <AvatarUser
                       class="!h-16 !w-16"
                       :avatar-url="user?.avatar_url"
@@ -155,38 +155,38 @@ watch(popoverHover, (value: boolean) => {
                   </div>
 
                   <div
-                    class="text-[15px] font-bold text-black hover:underline hover:underline-offset-2 animate cursor-pointer"
+                    class="animate cursor-pointer text-[15px] font-bold text-black hover:underline hover:underline-offset-2"
                     @click="redirectProfilePage"
                   >
                     {{ user?.name }}
                   </div>
                   <div
-                    class="text-[15px] text-zinc-500 mb-2 cursor-pointer w-fit"
+                    class="mb-2 w-fit cursor-pointer text-[15px] text-zinc-500"
                     @click="redirectProfilePage"
                   >
                     @{{
                       user?.username
                     }}
                   </div>
-                  <p class="font-normal text-zinc-700 dark:text-zinc-400 text-[15px] mb-2">
+                  <p class="mb-2 text-[15px] font-normal text-zinc-700 dark:text-zinc-400">
                     {{ user?.bio }}
                   </p>
                   <div>
                     <div class="flex gap-4">
                       <div
-                        class="hover:underline hover:underline-offset-2 cursor-pointer flex items-center gap-1"
+                        class="flex cursor-pointer items-center gap-1 hover:underline hover:underline-offset-2"
                         @click="redirectFollowPage('followers')"
                       >
-                        <span class="font-bold text-[14px] text-black">{{ user?.followers_count ?? 0 }}</span>
-                        <span class="text-zinc-500 text-[14px]">Follower</span>
+                        <span class="text-[14px] font-bold text-black">{{ user?.followers_count ?? 0 }}</span>
+                        <span class="text-[14px] text-zinc-500">Follower</span>
                       </div>
 
                       <div
-                        class="hover:underline hover:underline-offset-2 cursor-pointer flex items-center gap-1"
+                        class="flex cursor-pointer items-center gap-1 hover:underline hover:underline-offset-2"
                         @click="redirectFollowPage('following')"
                       >
-                        <span class="font-bold text-[14px] text-black">{{ user?.followed_count ?? 0 }}</span>
-                        <span class="text-zinc-500 text-[14px]">Following</span>
+                        <span class="text-[14px] font-bold text-black">{{ user?.followed_count ?? 0 }}</span>
+                        <span class="text-[14px] text-zinc-500">Following</span>
                       </div>
                     </div>
                   </div>

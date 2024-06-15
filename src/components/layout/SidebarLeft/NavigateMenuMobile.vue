@@ -25,10 +25,10 @@ const route = useRoute();
 
 <template>
   <nav
-    class="md:hidden fixed bottom-0 w-full z-[3] transition-all duration-500  border-t"
+    class="fixed bottom-0 z-[3] w-full border-t transition-all duration-500  md:hidden"
     :class="{'opacity-50': direction === 'down'}"
   >
-    <div class="grid grid-cols-5 gap-4 bg-white h-[52px] w-full">
+    <div class="grid h-[52px] w-full grid-cols-5 gap-4 bg-white">
       <router-link
         v-slot="{ isActive }"
         class="link"
@@ -58,7 +58,7 @@ const route = useRoute();
 
       <router-link
         v-if="isLoggedIn"
-        class="link opacity-50 pointer-events-none"
+        class="link pointer-events-none opacity-50"
         to="/"
         active-class="active"
       >

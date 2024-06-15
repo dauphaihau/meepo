@@ -8,7 +8,7 @@ import Button from '@core/components/Button.vue';
 import { useUpdateProfile } from '@services/user.ts';
 import { useUploadImage } from '@services/common.ts';
 import DateBirthInput from '@components/DateBirthInput.vue';
-import { IRequestDataUpdateProfile, IUser } from '@/types/user.ts';
+import type { IRequestDataUpdateProfile, IUser } from '@/types/user.ts';
 import { useDialogStore } from '@stores/dialog.ts';
 import { useAuthStore } from '@stores/auth.ts';
 import { useNotificationStore } from '@stores/notification.ts';
@@ -120,14 +120,14 @@ function closeDialog() {
   >
     <template #panel>
       <!--              Header ( Actions )-->
-      <div class="px-4 absolute top-0 left-0 z-20 flex items-center h-[53px] w-full bg-white">
-        <div class="flex-initial w-20">
+      <div class="absolute left-0 top-0 z-20 flex h-[53px] w-full items-center bg-white px-4">
+        <div class="w-20 flex-initial">
           <XMarkIcon
-            class="text-black h-9 w-9 cursor-pointer hover:bg-zinc-100 rounded-full p-2"
+            class="size-9 cursor-pointer rounded-full p-2 text-black hover:bg-zinc-100"
             @click="closeDialog"
           />
         </div>
-        <h1 class="text-[15px] md:text-[20px] text-black  font-semibold flex-initial w-[29rem]">
+        <h1 class="w-[29rem] flex-initial text-[15px]  font-semibold text-black md:text-[20px]">
           Edit Profile
         </h1>
         <Button
@@ -140,9 +140,9 @@ function closeDialog() {
         </Button>
       </div>
 
-      <div class="mx-auto flex flex-col mt-12 pb-8">
+      <div class="mx-auto mt-12 flex flex-col pb-8">
         <!--                Background-->
-        <div class="bg-zinc-300 h-32 md:h-[198px] mx-0.5 mt-1">
+        <div class="mx-0.5 mt-1 h-32 bg-zinc-300 md:h-[198px]">
           <input
             id="file"
             type="file"
@@ -151,10 +151,10 @@ function closeDialog() {
             class="invisible md:h-[198px]"
           >
         </div>
-        <div class="flex flex-col gap-5 px-6 -mt-12">
+        <div class="-mt-12 flex flex-col gap-5 px-6">
           <div class="flex flex-col gap-5">
             <!-- Avatar-->
-            <div class="mb-2 relative max-h-[81.5px] max-w-[81.5px] md:max-h-[112px] md:max-w-[112px] rounded-full ring-[5px] ring-white">
+            <div class="relative mb-2 max-h-[81.5px] max-w-[81.5px] rounded-full ring-[5px] ring-white md:max-h-[112px] md:max-w-[112px]">
               <img
                 v-if="urlImage"
                 alt="preview-img"
@@ -180,10 +180,10 @@ function closeDialog() {
 
               <!-- @vue-ignore -->
               <div
-                class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10 cursor-pointer p-2 bg-black opacity-60 rounded-full"
+                class="absolute left-1/2 top-1/2 z-10 -translate-x-1/2 -translate-y-1/2 cursor-pointer rounded-full bg-black p-2 opacity-60"
                 @click="$refs.imageInput.click()"
               >
-                <PhotoIcon class="h-5 w-5 text-white" />
+                <PhotoIcon class="size-5 text-white" />
               </div>
             </div>
 

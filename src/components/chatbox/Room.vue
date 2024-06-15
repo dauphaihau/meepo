@@ -10,7 +10,7 @@ import Loading from '@core/components/Loading.vue';
 import { truncateText } from '@core/helpers/common.ts';
 import { parseMessageCreatedAt, isLastMessage } from '@lib/dayjs-parse.ts';
 import { useChatStore } from '@stores/chat.ts';
-import { ISendMessage } from '@/types/chat.ts';
+import type { ISendMessage } from '@/types/chat.ts';
 import useRealtimeMessage from '@composables/useRealtimeMessage.ts';
 import { useAuthStore } from '@stores/auth.ts';
 
@@ -148,13 +148,13 @@ const toggleShoFullChatbox = () => {
 </script>
 
 <template>
-  <div class="h-[500px] relative">
+  <div class="relative h-[500px]">
     <!--    Header - Info user-->
-    <div class="absolute top-0 left-0 z-10 bg-white/80  w-full flex gap-4 items-center cursor-pointer h-[56px] px-4">
+    <div class="absolute left-0 top-0 z-10 flex  h-[56px] w-full cursor-pointer items-center gap-4 bg-white/80 px-4">
       <!--        v-if="showFull && !noLastMessages"-->
       <ArrowLeftIcon
         v-if="chatStore.showFullChatbox"
-        class="h-9 w-9 cursor-pointer hover:bg-zinc-300/50 animate rounded-full p-2"
+        class="animate size-9 cursor-pointer rounded-full p-2 hover:bg-zinc-300/50"
         aria-hidden="true"
         @click="backLastMessageList"
       />
@@ -162,7 +162,7 @@ const toggleShoFullChatbox = () => {
         class="w-full"
         @click="toggleShoFullChatbox"
       >
-        <p class="font-bold text-lg leading-5">
+        <p class="text-lg font-bold leading-5">
           {{ truncateText(chatStore.currentUserToMessage?.name, 20, '...') }}
         </p>
         <p class="text-sm text-zinc-500">
@@ -175,7 +175,7 @@ const toggleShoFullChatbox = () => {
     <div
       id="messagesId"
       ref="messagesEl"
-      class="min-h-[436px] max-h-80 overflow-scroll scrollable-div px-4"
+      class="scrollable-div max-h-80 min-h-[436px] overflow-scroll px-4"
     >
       <div class="h-[56px]" />
 
@@ -194,17 +194,17 @@ const toggleShoFullChatbox = () => {
           :key="index"
         >
           <div
-            class="whitespace-pre-wrap max-w-[20rem]"
+            class="max-w-80 whitespace-pre-wrap"
             :class="[( message.user_id === authStore.user?.id ? 'me' : 'you' ),
                      message.user_id !== messages[index + 1]?.user_id && message.user_id !== messages[index - 1]?.user_id ? 'rounded-md' :
                      message.user_id === authStore.user?.id ? {
                        '!rounded-br-md': message.user_id !== messages[index - 1]?.user_id,
                        '!rounded-tr-md': message.user_id !== messages[index + 1]?.user_id,
-                       '!rounded-tr-md !rounded-br-md': message.user_id === messages[index + 1]?.user_id && message.user_id === messages[index - 1]?.user_id,
+                       '!rounded-r-md': message.user_id === messages[index + 1]?.user_id && message.user_id === messages[index - 1]?.user_id,
                      } : {
                        '!rounded-bl-md': message.user_id !== messages[index - 1]?.user_id,
                        '!rounded-tl-md': message.user_id !== messages[index + 1]?.user_id,
-                       '!rounded-tl-md !rounded-bl-md': message.user_id === messages[index + 1]?.user_id && message.user_id === messages[index - 1]?.user_id,
+                       '!rounded-l-md': message.user_id === messages[index + 1]?.user_id && message.user_id === messages[index - 1]?.user_id,
                      }
             ]"
           >
@@ -217,7 +217,7 @@ const toggleShoFullChatbox = () => {
                 messages[index + 1]?.created_at,
               )
             "
-            class="text-zinc-500 text-sm mt-1 mb-4"
+            class="mb-4 mt-1 text-sm text-zinc-500"
             :class="message.user_id === authStore.user?.id ? 'text-right' : 'text-left' "
           >
             {{ parseMessageCreatedAt(message).time }}
@@ -227,35 +227,35 @@ const toggleShoFullChatbox = () => {
 
       <div
         ref="refBottom"
-        class="h-12 mt-5"
+        class="mt-5 h-12"
       />
     </div>
 
     <!--    Footer - Input-->
-    <div class="flex gap-2 bottom-10 mt-3 w-full px-1.5">
+    <div class="bottom-10 mt-3 flex w-full gap-2 px-1.5">
       <div class="flex-center">
         <PlusCircleIcon
           v-tooltip="'Not available'"
-          class="h-7 w-7 cursor-pointer text-[#606060]"
+          class="size-7 cursor-pointer text-[#606060]"
           aria-hidden="true"
         />
       </div>
-      <div class="pl-2 flex flex-row  items-center w-full bg-[#f1f2f5] rounded-3xl h-[38px]">
+      <div class="flex h-[38px] w-full  flex-row items-center rounded-3xl bg-[#f1f2f5] pl-2">
         <input
           ref="refInput"
           v-model="messageValue"
-          class="w-full border bg-[#f1f2f5] ring-0 border-none rounded-2xl border-transparent
-                  outline-none h-[36px] text-sm flex items-center  px-2"
+          class="flex h-[36px] w-full items-center rounded-2xl border border-none
+                  border-transparent bg-[#f1f2f5] px-2 text-sm outline-none  ring-0"
           placeholder="start a new message"
           @keyup.enter.stop="handleSendMessage"
         >
       </div>
       <div
         v-if="messageValue"
-        class="flex-center hover:bg-[#f2f2f2] rounded-full px-1.5"
+        class="flex-center rounded-full px-1.5 hover:bg-[#f2f2f2]"
       >
         <PaperAirplaneIcon
-          class="h-6 w-6 cursor-pointer text-[#606060]"
+          class="size-6 cursor-pointer text-[#606060]"
           aria-hidden="true"
           @click="handleSendMessage"
         />

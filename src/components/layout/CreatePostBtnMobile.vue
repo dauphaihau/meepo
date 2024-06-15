@@ -30,7 +30,7 @@ const showCreatePostDialog = () => {
 <template>
   <div
     v-if="showCreatePostBtn"
-    class="md:hidden fixed right-4 z-[3] transition-all duration-500"
+    class="fixed right-4 z-[3] transition-all duration-500 md:hidden"
     :class="[
       {'opacity-50': direction === 'down'},
       notificationStore.notifications.length > 0 ? 'bottom-24' : 'bottom-16'
@@ -39,10 +39,10 @@ const showCreatePostDialog = () => {
     <Button
       v-if="isLoggedIn"
       size="md"
-      class="!px-[11px] ml-6"
+      class="ml-6 !px-[11px]"
       @click="showCreatePostDialog"
     >
-      <PencilIcon class="h-5 w-5" />
+      <PencilIcon class="size-5" />
     </Button>
   </div>
 </template>

@@ -2,7 +2,8 @@
 import { useMediaQuery } from '@vueuse/core';
 import { useScrollDirection } from '@/core/hooks/useScrollDirection';
 import Button from '@core/components/Button.vue';
-import { DialogTypes, useDialogStore } from '@stores/dialog.ts';
+import type { DialogTypes } from '@stores/dialog.ts';
+import { useDialogStore } from '@stores/dialog.ts';
 
 const direction = useScrollDirection();
 const dialogStore = useDialogStore();
@@ -18,13 +19,13 @@ const showDialog = (type: DialogTypes) => {
   <div
     :class="{'opacity-50': direction === 'down'}"
     class="
-        lg:hidden fixed bottom-0 md:bottom-0 left-0 z-[2]
-        bg-black w-full py-3 pl-4
-        flex flex-col md:flex-row md:items-center md:justify-around
-        transition-all duration-500
+        fixed bottom-0 left-0 z-[2] flex w-full
+        flex-col bg-black py-3 pl-4
+        transition-all duration-500 md:bottom-0 md:flex-row md:items-center
+        md:justify-around lg:hidden
       "
   >
-    <div class="text-white mb-3">
+    <div class="mb-3 text-white">
       <p class="text-xl font-semibold">
         Don't miss what's happening
       </p>
@@ -35,7 +36,7 @@ const showDialog = (type: DialogTypes) => {
 
     <div
       v-if="!minLargeScreen"
-      class="flex gap-2 grow max-w-[50%] md:max-w-[200px]"
+      class="flex max-w-[50%] grow gap-2 md:max-w-[200px]"
     >
       <Button
         variant="outline"

@@ -2,21 +2,21 @@ import { defineStore } from 'pinia';
 
 export type TNotificationStatus = 'success' | 'warning' | 'error' | 'default';
 
-type NotificationPayload = {
+interface NotificationPayload {
   timeout?: number
   text: string
   btnRight?: {
     title: string
     onClick: () => void
   }
-};
-
-export interface INotification extends NotificationPayload {
-  status: TNotificationStatus
-  id: number
 }
 
-const defaultTimeout = 2000;
+export interface INotification extends NotificationPayload {
+  id: number
+  status: TNotificationStatus
+}
+
+const defaultTimeout = 200000;
 
 const createNotification = (payload: NotificationPayload, status: TNotificationStatus): INotification => ({
   ...payload,
@@ -55,7 +55,7 @@ export const useNotificationStore = defineStore('notification', {
       this.updateState(payload, 'error');
     },
 
-    clearNotiById(notificationId) {
+    clearNotiById(notificationId: INotification['id']) {
       this.notifications = this.notifications.filter(t => t.id !== notificationId);
     },
   },

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { UserInGetList } from '@/types/user';
+import type { UserInGetList } from '@/types/user';
 import UserPopper from '@components/UserPopper.vue';
 import { truncateText } from '@core/helpers/common.ts';
 import { useMediaQuery } from '@vueuse/core';
@@ -8,9 +8,9 @@ import ToggleFollowBtn from '@components/ToggleFollowBtn.vue';
 import { PAGE_PATHS } from '@config/const.ts';
 import AvatarUser from '@components/AvatarUser.vue';
 
-type TProps = {
+interface TProps {
   user: UserInGetList
-};
+}
 
 const router = useRouter();
 const minTabletScreen = useMediaQuery('(min-width: 768px)');
@@ -40,14 +40,14 @@ const onOpenPopover = (val) => {
     @mouseleave="isHover = false"
   >
     <div
-      class="px-4 py-3 bg-white flex flex-col animate hover:bg-zinc-100"
+      class="animate flex flex-col bg-white px-4 py-3 hover:bg-zinc-100"
       :class="{'cursor-pointer': !isOpenPopover }"
       @click="!isOpenPopover && redirectProfile()"
     >
-      <div class="flex flex-grow">
+      <div class="flex grow">
         <UserPopper
           :username="user.username"
-          class="mr-3 min-w-[40px] h-10"
+          class="mr-3 h-10 min-w-[40px]"
           @on-open-popover="onOpenPopover"
         >
           <AvatarUser
@@ -63,7 +63,7 @@ const onOpenPopover = (val) => {
             @on-open-popover="onOpenPopover"
           >
             <div
-              class="font-bold text-black hover:underline hover:underline-offset-2 animate"
+              class="animate font-bold text-black hover:underline hover:underline-offset-2"
               @click="redirectProfile"
             >
               @{{ truncateText(user?.name, minTabletScreen ? 25 : 15, '...') }}
@@ -86,7 +86,7 @@ const onOpenPopover = (val) => {
 
     <div
       v-if="authStore.user?.id !== user.id"
-      class="absolute top-4 right-5"
+      class="absolute right-5 top-4"
     >
       <ToggleFollowBtn
         v-model="is_current_user_following"

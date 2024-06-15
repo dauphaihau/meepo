@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { UserInGetList } from '@/types/user';
+import type { UserInGetList } from '@/types/user';
 import UserPopper from '@components/UserPopper.vue';
 import { truncateText } from '@core/helpers/common.ts';
 import AvatarUser from '@components/AvatarUser.vue';
@@ -35,7 +35,7 @@ const onOpenPopover = (val: boolean) => {
     @mouseleave="isHover = false"
   >
     <div
-      class="max-w-sm flex justify-between items-center px-4 py-3 hover:bg-zinc-200/50 animate"
+      class="animate flex max-w-sm items-center justify-between px-4 py-3 hover:bg-zinc-200/50"
       :class="!isOpenPopover && 'cursor-pointer'"
       @click="!isOpenPopover && !isHoverFollowBtn && redirectProfile()"
     >
@@ -43,7 +43,7 @@ const onOpenPopover = (val: boolean) => {
         <UserPopper
           :key="keyUserPopper"
           :username="user.username"
-          class="min-h-10 max-h-10 min-w-[40px]"
+          class="max-h-10 min-h-10 min-w-[40px]"
           @on-open-popover="onOpenPopover"
         >
           <div class="before:absolute">
@@ -74,7 +74,7 @@ const onOpenPopover = (val: boolean) => {
             @on-open-popover="onOpenPopover"
           >
             <div
-              class="text-[15px] font-normal text-zinc-500 -mt-3"
+              class="-mt-3 text-[15px] font-normal text-zinc-500"
               @click="redirectProfile"
             >
               @{{ truncateText(user?.username, 17, '...') }}

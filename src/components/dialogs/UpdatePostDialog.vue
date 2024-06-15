@@ -10,13 +10,14 @@ import { storeToRefs } from 'pinia';
 import Dialog from '@core/components/Dialog.vue';
 import Button from '@core/components/Button.vue';
 import { useUpdatePost } from '@services/post.ts';
-import { IResponseGetPost, IUpdatePost } from '@/types/post.ts';
+import type { IResponseGetPost, IUpdatePost } from '@/types/post.ts';
 import { useUploadImage } from '@services/common.ts';
 import { useAuthStore } from '@stores/auth.ts';
 import { useDialogStore } from '@stores/dialog.ts';
 import { useNotificationStore } from '@stores/notification.ts';
-import SelectWhoCanComment, { IOptionSelectWhoCanComment } from '@components/SelectWhoCanComment.vue';
-import { POST_WHO_CAN_COMMENT } from '@config/post.ts';
+import type { IOptionSelectWhoCanReply } from '@components/SelectWhoCanReply.vue';
+import SelectWhoCanComment from '@components/SelectWhoCanReply.vue';
+import { POST_WHO_CAN_REPLY } from '@config/post.ts';
 import { logger } from '@core/helpers/logger.ts';
 
 const queryClient = useQueryClient();
@@ -27,8 +28,8 @@ const router = useRouter();
 const route = useRoute();
 const notificationStore = useNotificationStore();
 
-const currentRouteName = route.name;
-const postId = route.params.id;
+const currentRouteName = route?.name;
+const postId = route?.params?.id;
 
 const dataPost = computed(() => dialogStore.data as IResponseGetPost);
 
@@ -46,7 +47,7 @@ const textareaRef = ref(null);
 const fileImage = ref(null);
 const urlImage = ref(null);
 const content = ref();
-const whoCanComment = ref(POST_WHO_CAN_COMMENT.EVERYONE);
+const whoCanComment = ref(POST_WHO_CAN_REPLY.EVERYONE);
 
 const disabledBtnUpdate = computed(() => {
   if (!content.value) {
@@ -72,7 +73,7 @@ watch(() => dialogStore.data, () => {
   if (dataPost.value) {
     content.value = dataPost.value?.content;
     urlImage.value = dataPost.value?.image_url;
-    whoCanComment.value = dataPost.value?.who_can_comment_int ?? POST_WHO_CAN_COMMENT.EVERYONE;
+    whoCanComment.value = dataPost.value?.who_can_comment_int ?? POST_WHO_CAN_REPLY.EVERYONE;
   }
 }, { deep: true, immediate: true });
 
@@ -158,7 +159,7 @@ const onChangeImage = ({ target }: Event) => {
   urlImage.value = URL.createObjectURL(target.files[0]);
 };
 
-const onChangeSelectWhoCanComment = (val: IOptionSelectWhoCanComment) => {
+const onChangeSelectWhoCanComment = (val: IOptionSelectWhoCanReply) => {
   whoCanComment.value = val.value;
 };
 
@@ -221,21 +222,21 @@ watch(content, () => {
     >
       <template #panel>
         <div class="mt-12">
-          <div class="flex flex-row h-full">
+          <div class="flex h-full flex-row">
             <!--         Avatar-->
-            <div class="mr-4 mt-2 basis-11 h-full min-w-[40px]">
-              <div class="h-full mt-[5px]">
+            <div class="mr-4 mt-2 h-full min-w-[40px] basis-11">
+              <div class="mt-[5px] h-full">
                 <img
                   v-if="user.avatar_url"
                   :src="user.avatar_url"
-                  class="rounded-full h-10 w-10 bg-black cursor-pointer"
+                  class="size-10 cursor-pointer rounded-full bg-black"
                   alt="avatar"
                   @click="router.push('/user/' + user.username)"
                 >
                 <img
                   v-else
                   src="@/assets/default-avatar.png"
-                  class="rounded-full h-10 w-10 bg-black cursor-pointer"
+                  class="size-10 cursor-pointer rounded-full bg-black"
                   alt="avatar"
                   @click="router.push('/user/' + user.username)"
                 >
@@ -243,7 +244,7 @@ watch(content, () => {
             </div>
 
             <!--        Input -->
-            <div class="w-full md:max-h-[71vh] md:min-h-[10vh] overflow-y-scroll">
+            <div class="w-full overflow-y-scroll md:max-h-[71vh] md:min-h-[10vh]">
               <textarea
                 id="content"
                 ref="textareaRef"
@@ -256,7 +257,7 @@ watch(content, () => {
 
               <div
                 v-if="urlImage"
-                class="relative mt-3 mb-1"
+                class="relative mb-1 mt-3"
               >
                 <img
                   alt="preview-img"
@@ -264,11 +265,11 @@ watch(content, () => {
                   class="h-auto w-full rounded-xl"
                 >
                 <div
-                  class="rounded-full bg-black opacity-70 w-fit p-1
-                 absolute z-[1] top-2 right-2 hover:opacity-60 transition ease-out duration-300"
+                  class="absolute right-2 top-2 z-[1] w-fit
+                 rounded-full bg-black p-1 opacity-70 transition duration-300 ease-out hover:opacity-60"
                 >
                   <XMarkIcon
-                    class="text-white h-5 w-5 cursor-pointer text-white"
+                    class="size-5 cursor-pointer text-white"
                     @click="deleteImage"
                   />
                 </div>
@@ -276,16 +277,16 @@ watch(content, () => {
             </div>
           </div>
 
-          <div class="hidden md:block h-[100px]" />
+          <div class="hidden h-[100px] md:block" />
 
-          <div class="absolute bottom-2 left-0 z-[1] bg-white w-full rounded-2xl px-4 pt-1">
+          <div class="absolute bottom-2 left-0 z-[1] w-full rounded-2xl bg-white px-4 pt-1">
             <SelectWhoCanComment
               :default-value="whoCanComment"
               @update:model-value="onChangeSelectWhoCanComment"
             />
-            <div class="border-b mt-4 mb-2" />
+            <div class="mb-2 mt-4 border-b" />
             <!--     Toolbar input     -->
-            <div class="flex items-center justify-between gap-x-6 w-full">
+            <div class="flex w-full items-center justify-between gap-x-6">
               <div class="flex items-center gap-1.5">
                 <!-- @vue-ignore -->
                 <PhotoIcon

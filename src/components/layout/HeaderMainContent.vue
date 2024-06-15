@@ -75,7 +75,7 @@ const showSidebarMobile = () => {
       <!--      Header mobile ( logo + user ) -->
       <div
         v-if="currentRouteName === 'home'"
-        class="md:hidden flex gap-4 items-center justify-between h-[53px] px-4"
+        class="flex h-[53px] items-center justify-between gap-4 px-4 md:hidden"
       >
         <div
           class="cursor-pointer"
@@ -85,19 +85,19 @@ const showSidebarMobile = () => {
             v-if="user?.avatar_url"
             alt="avatar"
             :src="user?.avatar_url"
-            class="h-8 w-8 lg:h-8 lg:w-8 rounded-full "
+            class="size-8 rounded-full lg:size-8 "
           >
           <img
             v-else
             alt="avatar"
             src="@/assets/default-avatar.png"
-            class="h-8 w-8 lg:h-8 lg:w-8 rounded-full "
+            class="size-8 rounded-full lg:size-8 "
           >
         </div>
 
         <router-link
           :to="isLoggedIn ? '/home' : '/explore' "
-          class="font-black font-[Alphabets4] text-2xl"
+          class="font-[Alphabets4] text-2xl font-black"
         >
           m
         </router-link>
@@ -107,16 +107,16 @@ const showSidebarMobile = () => {
       <!--      Search Bar, title , arrow back -->
       <div
         v-if="title || subTitle"
-        class="flex gap-4 items-center justify-between h-[53px] px-4 md:px-4"
+        class="flex h-[53px] items-center justify-between gap-4 px-4 md:px-4"
       >
         <div
           v-if="currentRouteName === 'explore'"
-          class="h-9 w-9 p-2"
+          class="size-9 p-2"
         />
 
         <ArrowLeftIcon
           v-if="!['explore', 'messages'].includes(currentRouteName)"
-          class="h-9 w-9 cursor-pointer hover:bg-zinc-300 animate rounded-full p-2"
+          class="animate size-9 cursor-pointer rounded-full p-2 hover:bg-zinc-300"
           aria-hidden="true"
           @click="backTo ? router.push(backTo) : router.back()"
         />
@@ -132,13 +132,13 @@ const showSidebarMobile = () => {
             v-if="user?.avatar_url"
             alt="avatar"
             :src="user?.avatar_url"
-            class="h-8 w-8 lg:h-8 lg:w-8 rounded-full "
+            class="size-8 rounded-full lg:size-8 "
           >
           <img
             v-else
             alt="avatar"
             src="@/assets/default-avatar.png"
-            class="h-8 w-8 lg:h-8 lg:w-8 rounded-full "
+            class="size-8 rounded-full lg:size-8 "
           >
         </div>
 
@@ -147,12 +147,15 @@ const showSidebarMobile = () => {
           class="grow"
         >
           <div v-if="!showSearchBar">
-            <h3 class="text-[17px] md:text-[20px] font-bold leading-6">
+            <h3
+              id="title-page"
+              class="text-[17px] font-bold leading-6 md:text-[20px]"
+            >
               {{ title }}
             </h3>
             <p
               v-if="subTitle"
-              class="text-zinc-500 text-xs md:text-sm"
+              class="text-xs text-zinc-500 md:text-sm"
             >
               {{ subTitle }}
             </p>
@@ -170,13 +173,13 @@ const showSidebarMobile = () => {
         <SettingIconOutline
           v-if="['explore', 'messages'].includes(currentRouteName)"
           v-tooltip="'Not available'"
-          class="h-7 md:h-9 w-7 md:w-9 cursor-pointer
-           hover:bg-zinc-300 animate rounded-full p-1 md:p-2 opacity-50"
+          class="animate size-7 cursor-pointer rounded-full p-1
+           opacity-50 hover:bg-zinc-300 md:size-9 md:p-2"
         />
         <EllipsisHorizontalIcon
           v-if="currentRouteName === 'search'"
           v-tooltip="'Not available'"
-          class="h-9 w-9 cursor-pointer hover:bg-zinc-300 animate rounded-full p-2 opacity-30"
+          class="animate size-9 cursor-pointer rounded-full p-2 opacity-30 hover:bg-zinc-300"
         />
       </div>
 

@@ -33,27 +33,26 @@ const otherFieldsSchema = {
   dob: z.string({ required_error: 'Date of birth is required', invalid_type_error: 'Date of birth is required' }),
 };
 
-const {
-  dob, password, confirmPassword,
-} = otherFieldsSchema;
-
 export const registerSchema = userSchema.pick({
   name: true,
   username: true,
   email: true,
 }).merge(
   z.object({
-    password,
-    dob,
+    password: otherFieldsSchema.password,
+    dob: otherFieldsSchema.dob,
   })
 );
 
 export const loginSchema = z.object({
   email: userSchema.shape.email,
-  password,
+  password: otherFieldsSchema.password,
 });
 
-export const resetPasswordSchema = z.object({ password, confirmPassword })
+export const resetPasswordSchema = z.object({
+  password: otherFieldsSchema.password,
+  confirmPassword: otherFieldsSchema.confirmPassword,
+})
   .superRefine(({ password, confirmPassword }, ctx) => {
     if (password !== confirmPassword) {
       ctx.addIssue({

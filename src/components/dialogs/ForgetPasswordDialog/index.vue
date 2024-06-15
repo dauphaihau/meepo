@@ -62,9 +62,9 @@ watch(() => dialogStore.showDialog, (value) => {
 
         <div
           v-if="currentStep === 0"
-          class="text-center mt-4"
+          class="mt-4 text-center"
         >
-          <span class="text-zinc-500 mr-1">Already have an account?</span>
+          <span class="mr-1 text-zinc-500">Already have an account?</span>
           <span
             class="text-link"
             @click="openLoginDialog"

@@ -2,7 +2,7 @@
 import { StarIcon } from '@heroicons/vue/24/solid';
 import { POST_FILTER_BY } from '@config/const';
 import OptionsPost from '@components/common/post/PostOptions.vue';
-import { IResponseGetPost } from '@/types/post';
+import type { IResponseGetPost } from '@/types/post';
 import InfoAuthorPost from '@components/common/post/InfoAuthorPost.vue';
 import ContentPost from '@components/common/post/ContentPost.vue';
 import PostActions from '@components/common/post/PostActions.vue';
@@ -45,23 +45,23 @@ const redirectDetailPost = () => {
 <template>
   <div>
     <div
-      class="flex flex-col relative mx-[0.3px]"
+      class="relative mx-[0.3px] flex flex-col"
       :class="{'z-[1]': isHover}"
       @mouseover="isHover = true"
       @mouseleave="isHover = false"
     >
       <div
-        class="px-4 bg-white flex flex-col animate hover:bg-zinc-100"
+        class="animate flex flex-col bg-white px-4 hover:bg-zinc-100"
         :class="{'cursor-pointer': !isOpenPopover, }"
         @click="!isOpenPopover && !isHoverAction && redirectDetailPost()"
       >
         <!--         Pin Post-->
         <div
           v-if="dataPost.pin_status_int === POST_PIN_STATUS.PIN"
-          class="flex gap-3 items-center text-zinc-500 ml-[30px] mb-[-10px] mt-2"
+          class="mb-[-10px] ml-[30px] mt-2 flex items-center gap-3 text-zinc-500"
         >
-          <StarIcon class="h-4 w-4" />
-          <p class="font-semibold text-[13px]">
+          <StarIcon class="size-4" />
+          <p class="text-[13px] font-semibold">
             Pinned Post
           </p>
         </div>
@@ -72,7 +72,7 @@ const redirectDetailPost = () => {
             :data-post="dataPost"
             @on-open-popover="onOpenPopover"
           />
-          <div class="w-full max-w-[83%] md:max-w-[90%] py-3">
+          <div class="w-full max-w-[83%] py-3 md:max-w-[90%]">
             <InfoAuthorPost
               :data-post="dataPost"
               @on-open-popover="onOpenPopover"

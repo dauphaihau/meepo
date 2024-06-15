@@ -15,7 +15,6 @@ export const useDrawerStore = defineStore('drawer', {
   getters: {},
   actions: {
     close() {
-      console.log('click close dr');
       this.showDrawer = null;
       this.data = null;
     },

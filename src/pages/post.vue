@@ -40,13 +40,13 @@ const {
       <!--    Response error 404 -->
       <div
         v-if="!data?.post"
-        class="max-w-[20rem] mx-auto mt-20"
+        class="mx-auto mt-20 max-w-80"
       >
         <div class="space-y-2">
           <div class="text-3xl font-bold">
             This post doesn’t exist
           </div>
-          <div class="text-zinc-500 font-semibold">
+          <div class="font-semibold text-zinc-500">
             Try searching for another.
           </div>
           <Button @click="router.push({name: 'explore'})">

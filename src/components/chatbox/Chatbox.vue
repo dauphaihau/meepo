@@ -11,14 +11,12 @@ const chatStore = useChatStore();
 
 <template>
   <div
-    class="hidden md:flex flex-col
-     fixed bottom-0 right-3 z-[4]
-     max-w-[400px] bg-white rounded-t-2xl w-full
-     border border-zinc-50
-     overflow-hidden
-     transition-all duration-500 transform max-h-0
-     chatbox-shadow
-    "
+    class="chatbox-shadow fixed bottom-0
+     right-3 z-[4] hidden max-h-0
+     w-full max-w-[400px] flex-col overflow-hidden
+     rounded-t-2xl border
+     border-zinc-50
+     bg-white transition-all duration-500 md:flex"
     :class="{
       'min-h-[54px]': authStore.user?.last_message_count < 0,
       'max-h-[500px]': chatStore.showFullChatbox,

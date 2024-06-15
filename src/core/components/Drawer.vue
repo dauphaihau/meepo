@@ -15,12 +15,12 @@ const { show, close } = defineProps<IProps>();
       <!-- Overlay -->
       <div
         v-if="show"
-        class="fixed inset-0 bg-black opacity-30 z-10 h-screen"
+        class="fixed inset-0 z-10 h-screen bg-black opacity-30"
         @click="close"
       />
 
       <div
-        class="fixed top-0 min-h-0 h-screen bg-white w-[75%] transition-all duration-500 z-10 py-3"
+        class="fixed top-0 z-10 h-screen min-h-0 w-3/4 bg-white py-3 transition-all duration-500"
         :class="show ? 'left-0' : '-left-80'"
       >
         <slot name="panel" />

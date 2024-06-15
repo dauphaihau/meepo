@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { POST_FILTER_BY } from '@config/const';
 import { useGetPosts } from '@services/post';
-import { IParamsGetPosts } from '@/types/post.ts';
+import type { IParamsGetPosts } from '@/types/post.ts';
 
 const router = useRouter();
 const route = useRoute();
@@ -48,10 +48,10 @@ const posts = computed(() => {
         <img
           :src="post.image_url"
           alt="post"
-          class="h-[195px] w-[195px] cursor-pointer"
+          class="size-[195px] cursor-pointer"
           :class="{
-            'rounded-tl-2xl rounded-bl-2xl': index === 0,
-            'rounded-tr-2xl rounded-br-2xl': index === 1,
+            'rounded-l-2xl': index === 0,
+            'rounded-r-2xl': index === 1,
           }"
           @click="router.push('/posts/' + post.id)"
         >
@@ -62,7 +62,7 @@ const posts = computed(() => {
       v-else-if="posts.length === 3"
       class="flex gap-[2px]"
     >
-      <div class="flex flex-col flex-wrap max-h-[222px] gap-[2px]">
+      <div class="flex max-h-[222px] flex-col flex-wrap gap-[2px]">
         <div
           v-for="(post, index) of posts"
           :key="index"
@@ -70,11 +70,11 @@ const posts = computed(() => {
           <img
             :src="post.image_url"
             alt="post"
-            class=" cursor-pointer w-[170px]"
+            class=" w-[170px] cursor-pointer"
             :class="{
               'h-[222px]': index === 0,
               'h-[110px]': index >= 1,
-              'rounded-tl-2xl rounded-bl-2xl': index === 0,
+              'rounded-l-2xl': index === 0,
               'rounded-tr-2xl': index === 1,
               'rounded-br-2xl': index === 2,
             }"

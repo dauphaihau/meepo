@@ -65,8 +65,6 @@ function onScroll() {
       (currentFilter !== FILTER_SEARCH_ALL.PEOPLE && data.value.pageParams.length <= maxPostsPage.value)
     )
   ) {
-    console.log('data-value-page-params', data.value.pageParams.length);
-    console.log('max-users-page', maxUsersPage.value);
     fetchNextPage();
   }
 }
@@ -82,7 +80,7 @@ function onScroll() {
       class="bg-white"
       :class="currentFilter === FILTER_SEARCH_ALL.TOP && 'border-b'"
     >
-      <h3 class="text-[20px] font-bold leading-6 px-4 pt-6 pb-3">
+      <h3 class="px-4 pb-3 pt-6 text-[20px] font-bold leading-6">
         People
       </h3>
       <div
@@ -115,13 +113,13 @@ function onScroll() {
   <!--    Response error 404 -->
   <div
     v-if="!isPendingGetSearchAll && users.length === 0 && posts.length === 0"
-    class="max-w-[20rem] mx-auto mt-20"
+    class="mx-auto mt-20 max-w-80"
   >
     <div class="space-y-2">
-      <p class="text-3xl font-bold break-words">
+      <p class="break-words text-3xl font-bold">
         No results for "{{ route.query.q }}"
       </p>
-      <div class="text-zinc-500 font-normal">
+      <div class="font-normal text-zinc-500">
         Try searching for something else
       </div>
     </div>

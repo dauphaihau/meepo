@@ -6,7 +6,7 @@ import Loading from '@core/components/Loading.vue';
 import { useGetLastMessages } from '@services/chat';
 import { parseTimeFromNow } from '@/lib/dayjs-parse';
 import { truncateText } from '@core/helpers/common.ts';
-import {
+import type {
   ILastMessage, IMessage, IResponseGetLastMessages
 } from '@/types/chat.ts';
 import { useChatStore } from '@stores/chat.ts';
@@ -81,7 +81,7 @@ const toggleShoFullChatbox = () => {
   <div>
     <!--      Header-->
     <div
-      class="absolute top-0 left-0 z-10 bg-white/80 w-full flex items-center justify-between px-4 cursor-pointer h-[56px]"
+      class="absolute left-0 top-0 z-10 flex h-[56px] w-full cursor-pointer items-center justify-between bg-white/80 px-4"
       @click="toggleShoFullChatbox"
     >
       <h3 class="text-xl font-bold">
@@ -102,7 +102,7 @@ const toggleShoFullChatbox = () => {
     <!-- Body - messages -->
     <div
       ref="messagesEl"
-      class="overflow-scroll transition duration-300 h-[500px] pb-[50px]"
+      class="h-[500px] overflow-scroll pb-[50px] transition duration-300"
     >
       <div class="h-[56px]" />
 
@@ -112,24 +112,24 @@ const toggleShoFullChatbox = () => {
           :key="message.id"
         >
           <div
-            class="flex gap-2 items-center  px-4 h-[73px] hover:bg-zinc-50 cursor-pointer "
+            class="flex h-[73px] cursor-pointer  items-center gap-2 px-4 hover:bg-zinc-50 "
             @click="clickMessage(message)"
           >
             <img
               v-if="message.participant_avatar_url"
               alt="avatar"
               :src="message.participant_avatar_url"
-              class="rounded-full h-10 w-10 bg-black "
+              class="size-10 rounded-full bg-black "
             >
             <img
               v-else
               alt="avatar"
               src="@/assets/default-avatar.png"
-              class="rounded-full h-10 w-10 bg-black "
+              class="size-10 rounded-full bg-black "
             >
 
             <div class="flex flex-col justify-center">
-              <div class="flex gap-2 text-[15px] max-w-[80vw]">
+              <div class="flex max-w-[80vw] gap-2 text-[15px]">
                 <p class="font-semibold">
                   {{ truncateText(message.participant_name, 12, '...') }}
                 </p>
@@ -141,7 +141,7 @@ const toggleShoFullChatbox = () => {
                   {{ truncateText(parseTimeFromNow(message.created_at), 7, '...') }}
                 </p>
               </div>
-              <div class="text-zinc-500 h-5">
+              <div class="h-5 text-zinc-500">
                 {{ truncateText(message.text, 37, '...') }}
               </div>
             </div>

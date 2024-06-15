@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { IResponseGetPost } from '@/types/post.ts';
+import type { IResponseGetPost } from '@/types/post.ts';
 import { formatTextWithHashTags } from '@core/helpers/common.ts';
 
 interface IProps {
@@ -13,13 +13,14 @@ const { dataPost } = defineProps<IProps>();
 <template>
   <p
     class="content-post"
+    data-test="content"
     v-html="formatTextWithHashTags(dataPost.content)"
   />
   <img
     v-if="dataPost.image_url"
     :src="dataPost.image_url"
     alt=""
-    class="rounded-xl my-4 w-full h-auto"
+    class="my-4 h-auto w-full rounded-xl"
   >
 </template>
 

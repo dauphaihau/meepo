@@ -31,7 +31,7 @@ const search = (value: string) => {
     :class="!isExplorePage && 'bg-zinc-100'"
   >
     <div
-      class="py-3 h-fit rounded-2xl"
+      class="h-fit rounded-2xl py-3"
       :class="!isExplorePage && 'w-[348px] bg-zinc-100'"
     >
       <h2 class="title">
@@ -52,14 +52,14 @@ const search = (value: string) => {
       <!-- List Hashtags -->
       <div
         v-else-if="data?.hashtags && data.hashtags.length > 0"
-        class="flex flex-col w-full mt-4"
+        class="mt-4 flex w-full flex-col"
       >
         <div
           v-for="(hashtag, index) in data.hashtags"
           :key="index"
         >
           <div
-            class="block text-zinc-500 cursor-pointer"
+            class="block cursor-pointer text-zinc-500"
             :class="isExplorePage ? 'hover:bg-zinc-100/50 p-3' : 'hover:bg-zinc-200/50 px-3 py-2'"
             @click="search(hashtag.name)"
           >

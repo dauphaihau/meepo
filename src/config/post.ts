@@ -3,7 +3,7 @@ export const POST_CONFIG = {
   MAX_EDIT_POST: 5,
 };
 
-export enum POST_WHO_CAN_COMMENT {
+export enum POST_WHO_CAN_REPLY {
   EVERYONE,
   FOLLOWED
 }

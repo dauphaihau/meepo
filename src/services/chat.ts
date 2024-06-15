@@ -1,5 +1,5 @@
 import { apiHelper } from '@lib/axios';
-import {
+import type {
   IMessage,
   IParamsGetLastMessages,
   IParamsGetMessages,

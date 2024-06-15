@@ -1,6 +1,6 @@
-import { IBaseParamsGetList } from '@/types/common.ts';
-import { IRoom } from '@/types/room.ts';
-import { IUser } from '@/types/user.ts';
+import type { IBaseParamsGetList } from '@/types/common.ts';
+import type { IRoom } from '@/types/room.ts';
+import type { IUser } from '@/types/user.ts';
 
 export interface IMessage {
   id: number

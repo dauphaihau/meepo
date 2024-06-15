@@ -5,7 +5,7 @@ import Loading from '@core/components/Loading.vue';
 import { useGetLastMessages } from '@services/chat.ts';
 import { parseTimeFromNow } from '@lib/dayjs-parse.ts';
 import { truncateText } from '@core/helpers/common.ts';
-import { ILastMessage, IMessage, IResponseGetLastMessages } from '@/types/chat.ts';
+import type { ILastMessage, IMessage, IResponseGetLastMessages } from '@/types/chat.ts';
 
 import HeaderMainContent from '@components/layout/HeaderMainContent.vue';
 import router from '@/router';
@@ -110,24 +110,24 @@ const onClickMessage = (message: ILastMessage & Pick<IMessage, 'room_id'>) => {
           :key="message.id"
         >
           <div
-            class="flex gap-2 items-center  px-4 h-[73px] hover:bg-zinc-50 cursor-pointer "
+            class="flex h-[73px] cursor-pointer  items-center gap-2 px-4 hover:bg-zinc-50 "
             @click="onClickMessage(message)"
           >
             <img
               v-if="message.participant_avatar_url"
               alt="avatar"
               :src="message.participant_avatar_url"
-              class="rounded-full h-10 w-10 bg-black "
+              class="size-10 rounded-full bg-black "
             >
             <img
               v-else
               alt="avatar"
               src="../assets/default-avatar.png"
-              class="rounded-full h-10 w-10 bg-black "
+              class="size-10 rounded-full bg-black "
             >
 
             <div class="flex flex-col justify-center">
-              <div class="flex gap-2 text-[15px] max-w-[80vw]">
+              <div class="flex max-w-[80vw] gap-2 text-[15px]">
                 <p class="font-semibold">
                   {{ truncateText(message.participant_name, 10, '...') }}
                 </p>
@@ -139,7 +139,7 @@ const onClickMessage = (message: ILastMessage & Pick<IMessage, 'room_id'>) => {
                   {{ truncateText(parseTimeFromNow(message.created_at), 7, '...') }}
                 </p>
               </div>
-              <div class="text-zinc-500 h-5">
+              <div class="h-5 text-zinc-500">
                 {{ truncateText(message.text, 33, '...') }}
               </div>
             </div>
@@ -148,12 +148,12 @@ const onClickMessage = (message: ILastMessage & Pick<IMessage, 'room_id'>) => {
       </div>
       <div
         v-else-if="!isPendingGetLastMessages"
-        class="px-10 mt-12"
+        class="mt-12 px-10"
       >
-        <h3 class="font-extrabold text-3xl mb-2 pr-2">
+        <h3 class="mb-2 pr-2 text-3xl font-extrabold">
           Welcome to your inbox!
         </h3>
-        <p class="text-zinc-500 text-sm">
+        <p class="text-sm text-zinc-500">
           Drop a line, share posts and more with private conversations between you and others on Meepo.
         </p>
       </div>

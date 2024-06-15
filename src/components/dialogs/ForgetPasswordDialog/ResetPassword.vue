@@ -73,10 +73,10 @@ const onSubmit = handleSubmit(async () => {
 <template>
   <div class="mb-4">
     <div class="mb-4">
-      <h1 class="text-2xl text-black font-bold mb-2">
+      <h1 class="mb-2 text-2xl font-bold text-black">
         Choose a new password
       </h1>
-      <h2 class="text-[15px] text-zinc-500 leading-6">
+      <h2 class="text-[15px] leading-6 text-zinc-500">
         Make sure your password must has at least 8 characters that
         include at least 1 lowercase character,
         1 uppercase characters, 1 number, and 1 special character in (!@#$%^&*)

@@ -41,20 +41,20 @@ function redirectFollowPage(path: PAGE_PATHS.FOLLOWING | PAGE_PATHS.FOLLOWERS) {
   >
     <template #panel>
       <router-link
-        class="px-3 block w-fit"
+        class="block w-fit px-3"
         :to="`${PAGE_PATHS.USER}/${user.username}`"
       >
         <img
           v-if="user.avatar_url"
           alt="avatar"
           :src="user.avatar_url"
-          class="h-10 w-10 lg:h-10 lg:w-10 rounded-full "
+          class="size-10 rounded-full lg:size-10 "
         >
         <img
           v-else
           alt="avatar"
           src="@/assets/default-avatar.png"
-          class="h-10 w-10 lg:h-10 lg:w-10 rounded-full "
+          class="size-10 rounded-full lg:size-10 "
         >
       </router-link>
 
@@ -69,19 +69,19 @@ function redirectFollowPage(path: PAGE_PATHS.FOLLOWING | PAGE_PATHS.FOLLOWERS) {
         </div>
         <div class="flex gap-4 ">
           <div
-            class="hover:underline hover:underline-offset-2 cursor-pointer flex items-center gap-1"
+            class="flex cursor-pointer items-center gap-1 hover:underline hover:underline-offset-2"
             @click="redirectFollowPage(PAGE_PATHS.FOLLOWERS)"
           >
-            <span class="font-bold text-[14px]">{{ user?.followers_count ?? 0 }}</span>
-            <span class="text-zinc-500 text-[14px]">Follower</span>
+            <span class="text-[14px] font-bold">{{ user?.followers_count ?? 0 }}</span>
+            <span class="text-[14px] text-zinc-500">Follower</span>
           </div>
 
           <div
-            class="hover:underline hover:underline-offset-2 cursor-pointer flex items-center gap-1"
+            class="flex cursor-pointer items-center gap-1 hover:underline hover:underline-offset-2"
             @click="redirectFollowPage(PAGE_PATHS.FOLLOWING)"
           >
-            <span class="font-bold text-[14px]">{{ user?.followed_count ?? 0 }}</span>
-            <span class="text-zinc-500 text-[14px]">Following</span>
+            <span class="text-[14px] font-bold">{{ user?.followed_count ?? 0 }}</span>
+            <span class="text-[14px] text-zinc-500">Following</span>
           </div>
         </div>
       </div>

@@ -1,13 +1,13 @@
 import { defineStore } from 'pinia';
 import { StatusCodes } from 'http-status-codes';
 
-import {
+import type {
   IRequestDataLogin, IRequestDataRegister, IResponseLogin, IUserAuthenticated
 } from '@/types/user.ts';
 import { authService } from '@services/auth.ts';
 import { logger } from '@core/helpers/logger.ts';
 import { apiHelper } from '@lib/axios.ts';
-import { AxiosResponse } from 'axios';
+import type { AxiosResponse } from 'axios';
 
 export interface IState {
   user: Partial<IUserAuthenticated>

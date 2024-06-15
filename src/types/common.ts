@@ -1,6 +1,6 @@
-import { FILTER_SEARCH_ALL } from '@config/const.ts';
-import { IUser } from '@/types/user.ts';
-import { IPost } from '@/types/post.ts';
+import type { FILTER_SEARCH_ALL } from '@config/const.ts';
+import type { IUser } from '@/types/user.ts';
+import type { IPost } from '@/types/post.ts';
 
 export interface IBaseResponse {
   message: string

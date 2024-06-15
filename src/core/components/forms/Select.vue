@@ -13,11 +13,11 @@ import {
 import { cn } from '@core/helpers/common.js';
 import { ChevronDownIcon, CheckIcon } from '@heroicons/vue/20/solid';
 
-export type TOptionDefault = {
+export interface TOptionDefault {
   id: number
   name: string
   disabled?: boolean
-};
+}
 
 interface IProps {
   modelValue: string
@@ -50,9 +50,7 @@ let {
   classBtn,
 } = props;
 
-const emit = defineEmits<{
-  (e: 'update:modelValue', value: TValue): void
-}>();
+const emit = defineEmits<(e: 'update:modelValue', value: TValue) => void>();
 
 const indexOption = computed(() => {
   const idx = props.options.findIndex(d => d.name === props.modelValue);
@@ -89,7 +87,7 @@ const onChangeSelect = (option: TValue) => {
           <span class="block truncate">{{ value?.name }}</span>
           <span class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
             <ChevronDownIcon
-              class="h-5 w-5 text-zinc-400"
+              class="size-5 text-zinc-400"
               aria-hidden="true"
             />
           </span>
@@ -120,7 +118,7 @@ const onChangeSelect = (option: TValue) => {
             >
               <li
                 :class="[
-                  'relative cursor-pointer select-none py-2 pl-3 pr-4 truncate flex items-center gap-2',
+                  'relative flex cursor-pointer select-none items-center gap-2 truncate py-2 pl-3 pr-4',
                   selected ? 'font-medium' : 'font-normal',
                   active ? 'bg-zinc-100 text-zinc-900' : 'text-zinc-900',
                 ]"
@@ -137,7 +135,7 @@ const onChangeSelect = (option: TValue) => {
 
                 <CheckIcon
                   v-show="selected"
-                  class="h-4 w-4 stroke-[2px]"
+                  class="size-4 stroke-[2px]"
                 />
               </li>
             </ListboxOption>

@@ -5,7 +5,11 @@ import dayjs from 'dayjs';
 import { truncateText } from '@core/helpers/common.ts';
 import { PencilIcon } from '@heroicons/vue/24/outline';
 import UserPopper from '@components/UserPopper.vue';
-import { IResponseGetPost } from '@/types/post.ts';
+import type { IResponseGetPost } from '@/types/post.ts';
+
+import relativeTime from 'dayjs/plugin/relativeTime';
+
+dayjs.extend(relativeTime);
 
 interface IProps {
   dataPost: IResponseGetPost
@@ -13,7 +17,7 @@ interface IProps {
 
 const { dataPost } = defineProps<IProps>();
 
-const emit = defineEmits<{ (e: 'onOpenPopover', value: boolean): void }>();
+const emit = defineEmits<(e: 'onOpenPopover', value: boolean) => void>();
 
 const router = useRouter();
 const isTabletScreen = useMediaQuery('(min-width: 768px)');
@@ -37,14 +41,14 @@ const redirectProfile = () => {
 
 <template>
   <div class="flex justify-between">
-    <div class="flex gap-2 text-[15px] w-full max-w-[100vw]">
+    <div class="flex w-full max-w-[100vw] gap-2 text-[15px]">
       <!--  Name -->
       <UserPopper
         :username="dataPost.author_username"
         @on-open-popover="onOpenPopover"
       >
         <div
-          class="font-bold text-black hover:underline hover:underline-offset-2 before:absolute"
+          class="font-bold text-black before:absolute hover:underline hover:underline-offset-2"
           @click="redirectProfile"
         >
           {{ truncateText(dataPost.author_name ?? dataPost.author.name, isTabletScreen ? 20 : 7, '...') }}
@@ -52,13 +56,13 @@ const redirectProfile = () => {
       </UserPopper>
 
       <!--  username & createdAt post -->
-      <div class="text-zinc-500 inline-flex gap-1">
+      <div class="inline-flex gap-1 text-zinc-500">
         <UserPopper
           :username="dataPost.author_username"
           @on-open-popover="onOpenPopover"
         >
           <div
-            class="before:absolute max-w-[7rem] md:max-w-[11rem] truncate"
+            class="max-w-28 truncate before:absolute md:max-w-44"
             @click="redirectProfile"
           >
             @{{ truncateText(

@@ -1,8 +1,9 @@
-import axios, {
+import type {
   AxiosError,
   AxiosResponse,
   InternalAxiosRequestConfig
 } from 'axios';
+import axios from 'axios';
 import { logger } from '@core/helpers/logger.ts';
 
 export interface IConfigReq extends InternalAxiosRequestConfig {

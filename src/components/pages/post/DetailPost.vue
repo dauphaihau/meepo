@@ -2,7 +2,7 @@
 import { useMediaQuery } from '@vueuse/core';
 import { StatusCodes } from 'http-status-codes';
 import { useMutationState, useQueryClient } from '@tanstack/vue-query';
-import { AxiosResponse } from 'axios';
+import type { AxiosResponse } from 'axios';
 import dayjs from 'dayjs';
 import {
   BookmarkIcon,
@@ -17,7 +17,7 @@ import { HeartIcon as HeartIconSolid } from '@heroicons/vue/24/solid';
 
 import OptionsPost from '@components/common/post/PostOptions.vue';
 
-import { IPost, IResponseGetDetailPost } from '@/types/post.ts';
+import type { IPost, IResponseGetDetailPost } from '@/types/post.ts';
 import {
   formatTextWithHashTags, truncateText
 } from '@core/helpers/common.ts';
@@ -120,37 +120,37 @@ const replyPost = () => {
     v-if="post"
     class="px-4"
   >
-    <div class=" flex justify-between items-center">
+    <div class=" flex items-center justify-between">
       <div class="w-full">
         <!--       Post's Author   -->
         <div class="flex justify-between">
           <div
-            class="flex gap-2.5 mb-4"
+            class="mb-4 flex gap-2.5"
           >
             <UserPopper :username="post.author?.username">
               <img
                 v-if="post.author?.avatar_url"
                 alt="avatar"
                 :src="post.author?.avatar_url"
-                class="rounded-full h-10 w-10 bg-black cursor-pointer"
+                class="size-10 cursor-pointer rounded-full bg-black"
                 @click="redirectProfile"
               >
               <img
                 v-else
                 alt="avatar"
                 src="@assets/default-avatar.png"
-                class="rounded-full h-10 w-10 bg-black cursor-pointer"
+                class="size-10 cursor-pointer rounded-full bg-black"
                 @click="redirectProfile"
               >
             </UserPopper>
             <div>
               <UserPopper
                 :username="post.author?.username"
-                class="max-h-[18px] mb-1.5 md:mb-0 "
+                class="mb-1.5 max-h-[18px] md:mb-0 "
               >
                 <h3
-                  class="text-base font-semibold  text-zinc-900
-                       hover:underline hover:underline-offset-2 cursor-pointer"
+                  class="cursor-pointer text-base  font-semibold
+                       text-zinc-900 hover:underline hover:underline-offset-2"
                   @click="redirectProfile"
                 >
                   {{ truncateText(post.author?.name, isTabletScreen ? 20 : 10, '...') }}
@@ -158,7 +158,7 @@ const replyPost = () => {
               </UserPopper>
               <UserPopper :username="post.author?.username">
                 <p
-                  class="max-w-2xl text-sm leading-3 text-zinc-500 cursor-pointer"
+                  class="max-w-2xl cursor-pointer text-sm leading-3 text-zinc-500"
                   @click="redirectProfile"
                 >
                   @{{ truncateText(post.author?.username, isTabletScreen ? 20 : 10, '...') }}
@@ -185,32 +185,32 @@ const replyPost = () => {
             v-if="post?.image_url"
             :src="post?.image_url"
             alt=""
-            class="rounded-xl mt-4 w-full h-auto"
+            class="mt-4 h-auto w-full rounded-xl"
           >
 
           <div
             v-if="post?.edited_posts_count > 0"
-            class="text-zinc-500 font-normal text-sm mt-4 flex items-center"
-            :class="{'hover:underline hover:underline-offset-2 cursor-pointer': post?.edited_posts_count > 0}"
+            class="mt-4 flex items-center text-sm font-normal text-zinc-500"
+            :class="{'cursor-pointer hover:underline hover:underline-offset-2': post?.edited_posts_count > 0}"
             @click="redirectHistory"
           >
             <PencilIcon
               v-if="post?.edited_posts_count > 0"
-              class="h-4 w-4 inline mr-1.5"
+              class="mr-1.5 inline size-4"
             />
             Last edited {{ postLastEdited?.time }} · {{ postLastEdited?.date }}
           </div>
 
           <div
             v-else
-            class="text-zinc-500 font-normal text-sm mt-4 flex items-center"
+            class="mt-4 flex items-center text-sm font-normal text-zinc-500"
           >
             {{ postLastEdited?.time }} · {{ postLastEdited?.date }}
           </div>
         </div>
 
         <!-- Actions -->
-        <div class="flex py-4 md:py-2 border-t">
+        <div class="flex border-t py-4 md:py-2">
           <div class="item-action">
             <div class="flex items-center gap-1 md:gap-0">
               <div
@@ -285,7 +285,7 @@ const replyPost = () => {
     </div>
   </div>
 
-  <div class="border-b w-full md:hidden" />
+  <div class="w-full border-b md:hidden" />
 </template>
 
 <style scoped>

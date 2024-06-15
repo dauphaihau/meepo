@@ -1,14 +1,14 @@
-import { z } from 'zod';
-import { loginSchema, registerSchema, userSchema } from '@/schemas/user.ts';
-import { IBaseParamsGetList, IBaseResponse } from '@/types/common.ts';
-import { USER_FILTER_BY } from '@config/const.ts';
+import type { z } from 'zod';
+import type { loginSchema, registerSchema, userSchema } from '@/schemas/user.ts';
+import type { IBaseParamsGetList, IBaseResponse } from '@/types/common.ts';
+import type { USER_FILTER_BY } from '@config/const.ts';
 
-type OtherFields = {
+interface OtherFields {
   is_current_user_following: boolean
   followers_count: number
   followed_count: number
   last_message_count: number
-};
+}
 
 export type IUser = z.infer<typeof userSchema>;
 
@@ -24,11 +24,11 @@ export type IParamsGetUsers = IBaseParamsGetList & {
 export type UserInGetList = IUser &
   Pick<OtherFields, 'followers_count' | 'followed_count' | 'is_current_user_following'>;
 
-export type IResponseGetUserList = {
+export interface IResponseGetUserList {
   total_users: number
   users?: UserInGetList[]
   by_user?: IUser
-};
+}
 
 export type IRequestDataLogin = z.infer<typeof loginSchema>;
 
@@ -50,10 +50,10 @@ export type IResponseGetProfile = IBaseResponse & {
   user: IUser & Pick<OtherFields, 'followers_count' | 'followed_count' | 'is_current_user_following'>
 };
 
-export type IRequestDataResetPassword = {
+export interface IRequestDataResetPassword {
   password: string
   token: string
-};
+}
 
 export type IRequestDataUpdateProfile = Partial<
   Pick<IUser, 'name' | 'bio' | 'location' | 'website' | 'avatar_url' | 'dob'>

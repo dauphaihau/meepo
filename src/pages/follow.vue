@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { IParamsGetUsers } from '@/types/user.ts';
+import type { IParamsGetUsers } from '@/types/user.ts';
 import HeaderMainContent from '@components/layout/HeaderMainContent.vue';
 import Loading from '@core/components/Loading.vue';
 import TabsMainContent from '@components/layout/TabsMainContent.vue';
@@ -61,7 +61,6 @@ onBeforeUnmount(() => {
 });
 
 function onScroll() {
-  console.log('max-users-page-value', maxUsersPage.value);
   if (
     window.scrollY + window.innerHeight >= (document.body.scrollHeight * 85 / 100) &&
     !isFetchingNextPage.value &&

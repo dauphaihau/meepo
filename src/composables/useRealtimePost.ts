@@ -1,7 +1,8 @@
 import { useWebSocket } from '@vueuse/core';
 import { parseJSON } from '@core/helpers/common.ts';
-import { Ref, ref } from 'vue';
-import { IResponseGetPost } from '@/types/post.ts';
+import type { Ref } from 'vue';
+import { ref } from 'vue';
+import type { IResponseGetPost } from '@/types/post.ts';
 import { logger } from '@core/helpers/logger.ts';
 
 interface ResponseDataMessage {

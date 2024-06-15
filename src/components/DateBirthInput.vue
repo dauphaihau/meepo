@@ -2,10 +2,10 @@
 import dayjs from 'dayjs';
 import customParseFormat from 'dayjs/plugin/customParseFormat';
 
-import Select, { TOptionDefault } from '@core/components/forms/Select.vue';
-import { logger } from '@core/helpers/logger.ts';
+import type { TOptionDefault } from '@core/components/forms/Select.vue';
+import Select from '@core/components/forms/Select.vue';
 import { USER_CONFIG } from '@config/user.ts';
-import { IUser } from '@/types/user.ts';
+import type { IUser } from '@/types/user.ts';
 
 // strict isValid()
 dayjs.extend(customParseFormat);
@@ -24,9 +24,7 @@ const model = defineModel<IUser['dob']>({
   required: true,
 });
 
-const emit = defineEmits<{
-  (e: 'update:modelValue', value: string): void
-}>();
+const emit = defineEmits<(e: 'update:modelValue', value: string) => void>();
 
 let dob = $ref({ month: '', day: '', year: '' });
 
@@ -112,7 +110,7 @@ const onChangeSelect = (nameSelect: string, option: TOptionDefault) => {
 </script>
 
 <template>
-  <div class="flex flex-wrap space-x-1.5 md:space-x-2 w-full mb-1">
+  <div class="mb-1 flex w-full flex-wrap space-x-1.5 md:space-x-2">
     <Select
       v-model="dob.month"
       class-wrapper="w-[40%]"

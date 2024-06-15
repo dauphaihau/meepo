@@ -1,5 +1,5 @@
 import { apiHelper } from '@/lib/axios';
-import {
+import type {
   IParamsGetUsers,
   IRequestDataUpdateProfile,
   IResponseGetProfile,
@@ -9,7 +9,7 @@ import {
 import {
   useInfiniteQuery, useMutation, useMutationState, useQuery
 } from '@tanstack/vue-query';
-import { AxiosResponse } from 'axios';
+import type { AxiosResponse } from 'axios';
 
 export const userService = {
   async list(params: IParamsGetUsers) {

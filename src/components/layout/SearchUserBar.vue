@@ -10,7 +10,7 @@ import {
 import { MagnifyingGlassIcon, XCircleIcon } from '@heroicons/vue/24/outline';
 
 import { useSearchUser } from '@services/common';
-import { IUser } from '@/types/user';
+import type { IUser } from '@/types/user';
 import { debounce, truncateText } from '@core/helpers/common.ts';
 import { useMediaQuery } from '@vueuse/core';
 import { FILTER_SEARCH_ALL } from '@config/const.ts';
@@ -129,7 +129,7 @@ const onChangeInput = (e: Event) => {
           <MagnifyingGlassIcon class="h-5 min-w-5 text-zinc-500" />
           <ComboboxInput
             placeholder="Search Meepo"
-            class="combobox-input group-hover:bg-white animate"
+            class="combobox-input animate group-hover:bg-white"
             :class="{'!bg-white': isFocus, 'pr-8': query }"
             @focus="handleFocus"
             @focusout="isFocus = false"
@@ -138,12 +138,12 @@ const onChangeInput = (e: Event) => {
           />
 
           <ComboboxButton
-            class="absolute inset-y-0 right-0 flex items-center pr-2 z-[1]"
+            class="absolute inset-y-0 right-0 z-[1] flex items-center pr-2"
             :class="{'w-full': !isFocus}"
           />
           <XCircleIcon
             v-if="query"
-            class="absolute text-zinc-500 hover:text-black animate h-6 w-6 cursor-pointer md:top-2 right-3 z-[2]"
+            class="animate absolute right-3 z-[2] size-6 cursor-pointer text-zinc-500 hover:text-black md:top-2"
             @click.stop="query = ''"
           />
         </div>
@@ -154,7 +154,7 @@ const onChangeInput = (e: Event) => {
           leave-to="opacity-0"
         >
           <ComboboxOptions
-            class="options z-[10]"
+            class="options z-10"
             :class="{'ring-1': isFocus && (users.length > 0 || storedSearches.length > 0 || query)}"
           >
             <!-- History searched -->
@@ -166,17 +166,17 @@ const onChangeInput = (e: Event) => {
             >
               <div
                 v-if="storedSearches.length > 0 && !query"
-                class="flex items-center gap-2 px-4 cursor-pointer hover:bg-zinc-100 py-3 animate"
+                class="animate flex cursor-pointer items-center gap-2 px-4 py-3 hover:bg-zinc-100"
                 @click="onClickHistorySearch(searchValue)"
               >
-                <MagnifyingGlassIcon class="h-5 w-5 min-w-[1.25rem]" />
-                <p class="text-sm grow overflow-hidden text-ellipsis whitespace-nowrap">
+                <MagnifyingGlassIcon class="size-5 min-w-5" />
+                <p class="grow truncate text-sm">
                   {{ searchValue }}
                 </p>
                 <div @click.stop="removeSearch(searchValue)">
                   <XCircleIcon
                     v-tooltip="'remove'"
-                    class="h-5 w-5"
+                    class="size-5"
                   />
                 </div>
               </div>
@@ -186,11 +186,11 @@ const onChangeInput = (e: Event) => {
             <ComboboxOption>
               <div
                 v-if="query"
-                class="flex items-center gap-2 px-4 cursor-pointer hover:bg-zinc-100 py-2.5 animate"
+                class="animate flex cursor-pointer items-center gap-2 px-4 py-2.5 hover:bg-zinc-100"
                 @click="redirectSearchPageWithQuery"
               >
-                <MagnifyingGlassIcon class="h-5 w-5 min-w-[1.25rem]" />
-                <p class="text-sm grow overflow-hidden text-ellipsis whitespace-nowrap">
+                <MagnifyingGlassIcon class="size-5 min-w-5" />
+                <p class="grow truncate text-sm">
                   Search for "{{ query }}"
                 </p>
               </div>
@@ -209,7 +209,7 @@ const onChangeInput = (e: Event) => {
                 :value="person"
               >
                 <li
-                  class="relative cursor-pointer select-none py-4 pl-4 pr-4 block"
+                  class="relative block cursor-pointer select-none p-4"
                   :class="{
                     'bg-[#f3f4f5] text-black': active,
                     'text-zinc-900': !active,
@@ -221,17 +221,17 @@ const onChangeInput = (e: Event) => {
                       v-if="person.avatar_url"
                       alt="avatar"
                       :src="person.avatar_url"
-                      class="rounded-full h-10 w-10 bg-black"
+                      class="size-10 rounded-full bg-black"
                     >
                     <img
                       v-else
                       alt="avatar"
                       src="@/assets/default-avatar.png"
-                      class="rounded-full h-10 w-10 bg-black"
+                      class="size-10 rounded-full bg-black"
                     >
                     <div>
                       <div
-                        class="text-[15px] max-h-[18px]"
+                        class="max-h-[18px] text-[15px]"
                         :class="{ 'font-medium': selected, 'font-semibold': !selected }"
                       >
                         {{ truncateText(person.name, isTabletScreen ? 20 : 10, '...') }}

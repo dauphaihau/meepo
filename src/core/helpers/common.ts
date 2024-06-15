@@ -1,6 +1,7 @@
-import { ClassArray, clsx } from 'clsx';
+import type { ClassArray } from 'clsx';
+import { clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
-import { EnumLike } from 'zod';
+import type { EnumLike } from 'zod';
 
 export function cn(...inputs: ClassArray) {
   return twMerge(clsx(inputs));

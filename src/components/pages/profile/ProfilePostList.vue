@@ -2,8 +2,8 @@
 import Loading from '@core/components/Loading.vue';
 import { useGetPosts } from '@services/post';
 import { POST_FILTER_BY } from '@config/const';
-import { IParamsGetPosts } from '@/types/post';
-import { IUser } from '@/types/user';
+import type { IParamsGetPosts } from '@/types/post';
+import type { IUser } from '@/types/user';
 import ProfilePost from '@components/pages/profile/ProfilePost.vue';
 import { POST_PIN_STATUS } from '@config/post.ts';
 
@@ -81,7 +81,7 @@ function onScroll() {
     <div
       v-if="posts && posts.length > 0"
       :key="keyPosts"
-      class="flex flex-col relative z-[1]"
+      class="relative z-[1] flex flex-col"
     >
       <div
         v-for="post in posts"

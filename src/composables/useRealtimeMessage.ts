@@ -1,6 +1,6 @@
 import { useWebSocket } from '@vueuse/core';
 import { parseJSON } from '@core/helpers/common.ts';
-import { IResponseDataMessageChannel } from '@/types/chat.ts';
+import type { IResponseDataMessageChannel } from '@/types/chat.ts';
 import { logger } from '@core/helpers/logger.ts';
 
 type Callback = (msd: IResponseDataMessageChannel['message']) => void;

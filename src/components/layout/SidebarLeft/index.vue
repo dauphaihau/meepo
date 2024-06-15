@@ -18,21 +18,21 @@ const showCreatePost = () => {
 </script>
 
 <template>
-  <header class="w-0 md:w-auto md:ml-8 lg:ml-0">
+  <header class="w-0 md:ml-8 md:w-auto lg:ml-0">
     <div class="hidden md:block">
       <div class="w-sidebar" />
 
-      <div class="w-sidebar fixed top-3 lg:top-2 h-[85%] lg:pl-[23px] xl:pl-0">
-        <NavigatePage class="flex flex-col items-center lg:items-start gap-4 lg:gap-6 mb-6" />
+      <div class="w-sidebar fixed top-3 h-[85%] lg:top-2 lg:pl-[23px] xl:pl-0">
+        <NavigatePage class="mb-6 flex flex-col items-center gap-4 lg:items-start lg:gap-6" />
 
         <div class="lg:hidden">
           <Button
             v-if="isLoggedIn"
             size="md"
-            class="!px-3 ml-6"
+            class="ml-6 !px-3"
             @click="showCreatePost"
           >
-            <PencilIcon class="h-5 w-5" />
+            <PencilIcon class="size-5" />
           </Button>
         </div>
 
@@ -48,7 +48,7 @@ const showCreatePost = () => {
         </div>
       </div>
 
-      <MenuUser class="fixed bottom-5 ml-[26px] lg:ml-0 z-[5]" />
+      <MenuUser class="fixed bottom-5 z-[5] ml-[26px] lg:ml-0" />
     </div>
   </header>
 </template>

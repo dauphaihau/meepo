@@ -1,7 +1,7 @@
 import { apiHelper } from '@/lib/axios';
 import axios from 'axios';
 import { useInfiniteQuery, useMutation } from '@tanstack/vue-query';
-import { IParamsSearchAll, IResponseGetSearchAll } from '@/types/common.ts';
+import type { IParamsSearchAll, IResponseGetSearchAll } from '@/types/common.ts';
 
 export const commonService = {
   async searchAll(params: IParamsSearchAll) {

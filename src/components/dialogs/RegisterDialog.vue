@@ -96,7 +96,7 @@ function closeDialog() {
     <template #panel>
       <div class="mx-auto flex flex-col gap-8">
         <div class="flex flex-col">
-          <h1 class="text-2xl mb-4 text-black text-center">
+          <h1 class="mb-4 text-center text-2xl text-black">
             Create account
           </h1>
           <div class="flex flex-col gap-5">
@@ -173,7 +173,7 @@ function closeDialog() {
             </form>
 
             <div class="text-center">
-              <span class="text-zinc-500 mr-1">Already have an account?</span>
+              <span class="mr-1 text-zinc-500">Already have an account?</span>
               <span
                 class="text-link"
                 @click="openLoginDialog"

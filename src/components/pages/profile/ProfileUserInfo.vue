@@ -9,7 +9,7 @@ import { useQueryClient } from '@tanstack/vue-query';
 import {
   useGetProfileUser, useGetStateUnOrFollowUser, useGetStateUpdateProfile
 } from '@services/user';
-import { IResponseGetProfile } from '@/types/user';
+import type { IResponseGetProfile } from '@/types/user';
 import Link from '@/core/components/Link.vue';
 import { formatTextWithHashTags, truncateText } from '@core/helpers/common.ts';
 import { useChatStore } from '@stores/chat.ts';
@@ -117,7 +117,7 @@ const showUpdateProfileDialog = () => {
 <template>
   <div v-if="userProfile">
     <!--    Background-->
-    <div class="bg-zinc-300 h-32 md:h-[198px]">
+    <div class="h-32 bg-zinc-300 md:h-[198px]">
       <input
         id="file"
         type="file"
@@ -126,10 +126,10 @@ const showUpdateProfileDialog = () => {
       >
     </div>
 
-    <div class="px-4 -mt-10 md:-mt-20">
-      <div class="flex justify-between items-center">
+    <div class="-mt-10 px-4 md:-mt-20">
+      <div class="flex items-center justify-between">
         <!-- Avatar -->
-        <div class="rounded-full ring-white ring-4 bg-white mb-4">
+        <div class="mb-4 rounded-full bg-white ring-4 ring-white">
           <img
             v-if="userProfile?.avatar_url"
             alt="avatar"
@@ -151,10 +151,10 @@ const showUpdateProfileDialog = () => {
               v-if="userProfile?.username !== authStore.user?.username"
               class="flex items-center gap-2"
             >
-              <div class="flex-center p-1.5 border border-zinc-300 rounded-full">
+              <div class="flex-center rounded-full border border-zinc-300 p-1.5">
                 <EnvelopeIcon
                   v-tooltip="'Message'"
-                  class="h-[21px] w-[21px] cursor-pointer"
+                  class="size-[21px] cursor-pointer"
                   aria-hidden="true"
                   @click="onClickMessage"
                 />
@@ -178,8 +178,8 @@ const showUpdateProfileDialog = () => {
         </div>
       </div>
 
-      <div class="sm:px-0 flex justify-between items-center mb-4">
-        <div class="space-y-3 w-full">
+      <div class="mb-4 flex items-center justify-between sm:px-0">
+        <div class="w-full space-y-3">
           <!-- name, username -->
           <div class="flex justify-between">
             <div>
@@ -198,44 +198,44 @@ const showUpdateProfileDialog = () => {
           />
 
           <!-- location, dob, website, date join -->
-          <div class="flex flex-wrap gap-4 items-center">
+          <div class="flex flex-wrap items-center gap-4">
             <div
               v-if="userProfile?.location"
-              class="flex gap-1 items-center"
+              class="flex items-center gap-1"
             >
               <MapPinIcon
-                class="h-5 w-5 text-zinc-500 text-[15px]"
+                class="size-5 text-[15px] text-zinc-500"
                 aria-hidden="true"
               />
-              <div class="text-zinc-500 text-[15px]">
+              <div class="text-[15px] text-zinc-500">
                 {{ userProfile.location }}
               </div>
             </div>
 
             <div
               v-if="userProfile?.dob"
-              class="flex gap-1 items-center"
+              class="flex items-center gap-1"
             >
               <CakeIcon
-                class="h-5 w-5 text-zinc-500 text-[15px]"
+                class="size-5 text-[15px] text-zinc-500"
                 aria-hidden="true"
               />
-              <div class="text-zinc-500 text-[15px]">
+              <div class="text-[15px] text-zinc-500">
                 Born {{ dayjs(userProfile.dob).format('MMMM DD, YYYY') }}
               </div>
             </div>
 
             <div
               v-if="userProfile?.website"
-              class="flex gap-1 items-center"
+              class="flex items-center gap-1"
             >
               <LinkIcon
-                class="h-5 w-5 text-zinc-500 text-[15px]"
+                class="size-5 text-[15px] text-zinc-500"
                 aria-hidden="true"
               />
               <Link
                 :to="userProfile?.website.includes('http') ? userProfile?.website : `https://${userProfileWebsite}`"
-                class=" text-[15px] text-[#4a99e9] hover:underline hover:underline-offset-2 font-normal"
+                class=" text-[15px] font-normal text-[#4a99e9] hover:underline hover:underline-offset-2"
               >
                 {{ userProfileWebsite }}
               </Link>
@@ -243,13 +243,13 @@ const showUpdateProfileDialog = () => {
 
             <div
               v-if="userProfile?.created_at"
-              class="flex gap-1 items-center"
+              class="flex items-center gap-1"
             >
               <CalendarDaysIcon
-                class="h-5 w-5 text-zinc-500 text-[15px]"
+                class="size-5 text-[15px] text-zinc-500"
                 aria-hidden="true"
               />
-              <div class="text-zinc-500 text-[15px]">
+              <div class="text-[15px] text-zinc-500">
                 Joined {{ userProfileDateJoin }}
               </div>
             </div>
@@ -258,19 +258,19 @@ const showUpdateProfileDialog = () => {
           <!--  following, follow -->
           <div class="flex gap-4 ">
             <div
-              class="hover:underline hover:underline-offset-2 cursor-pointer flex items-center gap-1"
+              class="flex cursor-pointer items-center gap-1 hover:underline hover:underline-offset-2"
               @click="redirectFollowPage(PAGE_PATHS.FOLLOWERS)"
             >
-              <span class="font-bold text-sm">{{ userProfile?.followers_count }}</span>
-              <span class="text-zinc-500 text-sm">Follower</span>
+              <span class="text-sm font-bold">{{ userProfile?.followers_count }}</span>
+              <span class="text-sm text-zinc-500">Follower</span>
             </div>
 
             <div
-              class="hover:underline hover:underline-offset-2 cursor-pointer flex items-center gap-1"
+              class="flex cursor-pointer items-center gap-1 hover:underline hover:underline-offset-2"
               @click="redirectFollowPage(PAGE_PATHS.FOLLOWING)"
             >
-              <span class="font-bold text-sm">{{ userProfile?.followed_count }}</span>
-              <span class="text-zinc-500 text-sm">Following</span>
+              <span class="text-sm font-bold">{{ userProfile?.followed_count }}</span>
+              <span class="text-sm text-zinc-500">Following</span>
             </div>
           </div>
         </div>

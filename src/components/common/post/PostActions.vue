@@ -10,7 +10,7 @@ import {
 } from '@heroicons/vue/24/outline';
 import { HeartIcon as HeartIconSolid } from '@heroicons/vue/24/solid';
 
-import { IResponseGetPost } from '@/types/post.ts';
+import type { IResponseGetPost } from '@/types/post.ts';
 import useRealtimePost from '@/composables/useRealtimePost.ts';
 import { useLikePost } from '@services/post.ts';
 import { useDialogStore } from '@stores/dialog.ts';
@@ -36,9 +36,7 @@ const post = ref({ ...dataPost });
 
 const { animationLikes, animationComments } = useRealtimePost(post);
 
-const emit = defineEmits<{
-  (e: 'onHoverAction', value: boolean): void
-}>();
+const emit = defineEmits<(e: 'onHoverAction', value: boolean) => void>();
 
 const {
   mutateAsync: likePost,
@@ -83,7 +81,7 @@ const handleShowReplyPostDialog = () => {
 </script>
 
 <template>
-  <div class="flex items-center mt-1 ml-[-7px] mr-[-4px]">
+  <div class="ml-[-7px] mr-[-4px] mt-1 flex items-center">
     <!-- Reply -->
     <div class="item-action">
       <div class="flex items-center gap-1 md:gap-0">

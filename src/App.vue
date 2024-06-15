@@ -32,11 +32,11 @@ const { isLoggedIn, loadingAuth, user } = storeToRefs(authStore);
     <LoadingFullPage v-if="loadingAuth" />
 
     <div v-else>
-      <div class="flex mx-auto max-w-[100vw] lg:max-w-4xl xl:max-w-[76rem]">
+      <div class="mx-auto flex max-w-[100vw] lg:max-w-4xl xl:max-w-[76rem]">
         <SidebarLeft />
-        <main class="flex gap-6 w-full min-h-[100vh] md:min-h-[200vh]">
+        <main class="flex min-h-screen w-full gap-6 md:min-h-[200vh]">
           <div
-            class="flex flex-col w-full  border-l border-r md:min-w-[598px] md:max-w-[598px] min-h-screen"
+            class="flex min-h-screen w-full flex-col border-x md:min-w-[598px] md:max-w-[598px]"
             :class="{'pt-12': !['messages', 'room'].includes(route.name as string)}"
           >
             <router-view :key="route.path" />

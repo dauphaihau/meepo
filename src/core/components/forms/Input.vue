@@ -17,9 +17,7 @@ const {
   size,
 } = props;
 
-const emit = defineEmits<{
-  (e: 'update:modelValue', value: string | number): void
-}>();
+const emit = defineEmits<(e: 'update:modelValue', value: string | number) => void>();
 
 const model = defineModel<string>({
   default: '',

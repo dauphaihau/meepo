@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { RouterLink, RouterLinkProps } from 'vue-router';
+import type { RouterLinkProps } from 'vue-router';
+import { RouterLink } from 'vue-router';
 
 type Props = {
   inactiveClass?: string

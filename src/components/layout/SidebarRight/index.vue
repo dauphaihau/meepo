@@ -72,9 +72,9 @@ const changeRoute = () => {
 <template>
   <div
     ref="sidebar"
-    class="pb-14 z-[4] w-sidebar"
+    class="w-sidebar z-[4] pb-14"
   >
-    <div class="fixed top-0 z-[3] w-sidebar">
+    <div class="w-sidebar fixed top-0 z-[3]">
       <div class="h-2 bg-white" />
       <SearchUserBar
         v-if="showSearchUserBar"
@@ -90,7 +90,7 @@ const changeRoute = () => {
 
     <div
       ref="content"
-      class="flex flex-col gap-5 pb-40 w-sidebar"
+      class="w-sidebar flex flex-col gap-5 pb-40"
     >
       <Auth :class="isLoggedIn ? 'absolute z-[-1] invisible' : ''" />
       <PhotosProfile
@@ -99,10 +99,10 @@ const changeRoute = () => {
       />
       <UsersSuggestList />
       <Trends v-if="route.name !== 'explore'" />
-      <div class="flex-center gap-2 text-zinc-500 -mt-2">
+      <div class="flex-center -mt-2 gap-2 text-zinc-500">
         <About />
         ·
-        <div class="text-zinc-500 text-sm">
+        <div class="text-sm text-zinc-500">
           © {{ new Date().getFullYear() }} Hau Tran
         </div>
       </div>

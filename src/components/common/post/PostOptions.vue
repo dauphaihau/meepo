@@ -11,11 +11,11 @@ import {
 import { StarIcon as SolidStarIcon } from '@heroicons/vue/20/solid';
 
 import { useDeletePost, useUpdatePost } from '@services/post.ts';
-import { IPost, IResponseGetPost, IUpdatePost } from '@/types/post.ts';
+import type { IPost, IResponseGetPost, IUpdatePost } from '@/types/post.ts';
 import { POST_CONFIG, POST_PIN_STATUS } from '@config/post.ts';
 import { useNotificationStore } from '@stores/notification.ts';
 import { useDialogStore } from '@stores/dialog.ts';
-import { AxiosResponse } from 'axios';
+import type { AxiosResponse } from 'axios';
 
 interface Props {
   dataPost: IResponseGetPost
@@ -134,13 +134,13 @@ const handleShowUpdatePost = () => {
   <Menu
     v-slot="{open}"
     as="div"
-    class="relative inline-block text-left h-5"
+    class="relative inline-block h-5 text-left"
   >
     <MenuButton>
       <EllipsisHorizontalIcon
         :class="classDotIcon"
-        class="h-5 w-5 flex justify-center items-center rounded-full
-         cursor-pointer text-zinc-500 hover:bg-zinc-200"
+        class="flex size-5 cursor-pointer items-center justify-center rounded-full
+         text-zinc-500 hover:bg-zinc-200"
       />
     </MenuButton>
 
@@ -161,7 +161,7 @@ const handleShowUpdatePost = () => {
         <div ref="menuItemsRef">
           <span
             v-if="!confirmDelete"
-            class="menu-item text-zinc-900 hover:bg-zinc-100 rounded-tl-xl rounded-tr-xl"
+            class="menu-item rounded-t-xl text-zinc-900 hover:bg-zinc-100"
             @click="confirmDelete = true"
           >
             <TrashIcon class="icon" />
@@ -173,7 +173,7 @@ const handleShowUpdatePost = () => {
             v-slot="{ active }"
           >
             <span
-              :class="['menu-item', active ? 'active text-red-400 rounded-tl-xl rounded-tr-xl' : 'text-red-400']"
+              :class="['menu-item', active ? 'active rounded-t-xl text-red-400' : 'text-red-400']"
               @click="handleDeletePost"
             >
               <CheckIcon class="icon" />
@@ -197,7 +197,7 @@ const handleShowUpdatePost = () => {
 
           <MenuItem v-slot="{ active }">
             <span
-              :class="['menu-item', active ? 'active rounded-bl-xl rounded-br-xl' : 'inactive']"
+              :class="['menu-item', active ? 'active rounded-b-xl' : 'inactive']"
               @click="handlePinPost"
             >
               <SolidStarIcon

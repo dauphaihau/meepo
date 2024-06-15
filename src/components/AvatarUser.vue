@@ -1,14 +1,14 @@
 <script setup lang="ts">
 import router from '@/router';
 import { PAGE_PATHS } from '@config/const.ts';
-import { IUser } from '@/types/user.ts';
+import type { IUser } from '@/types/user.ts';
 
-type TProp = {
+interface IProp {
   avatarUrl: IUser['avatar_url']
   username?: IUser['username']
-};
+}
 
-const { username, avatarUrl } = defineProps<TProp>();
+const { username, avatarUrl } = defineProps<IProp>();
 
 const redirectProfile = () => {
   if (username) {

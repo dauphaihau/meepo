@@ -1,6 +1,7 @@
 <script setup lang="ts">
 
-import { INotification, useNotificationStore } from '@stores/notification.ts';
+import type { INotification } from '@stores/notification.ts';
+import { useNotificationStore } from '@stores/notification.ts';
 
 const notificationStore = useNotificationStore();
 
@@ -25,16 +26,20 @@ const clickBtnRight = (noti: INotification) => {
         >
           <li
             v-for="noti of notificationStore.notifications"
+            id="notifications"
             :key="noti.id"
           >
             <div class="noti">
-              <div class="font-medium">
+              <div
+                id="noti-text"
+                class="font-medium"
+              >
                 {{ noti.text }}
               </div>
 
               <div
                 v-if="noti?.btnRight"
-                class="font-bold cursor-pointer md:ml-6"
+                class="cursor-pointer font-bold md:ml-6"
                 @click="clickBtnRight(noti)"
               >
                 {{ noti.btnRight?.title }}

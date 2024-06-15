@@ -32,10 +32,10 @@ const onSubmit = async () => {
 <template>
   <div class="mb-4">
     <div class="mb-4">
-      <h1 class="text-2xl text-black font-bold mb-2">
+      <h1 class="mb-2 text-2xl font-bold text-black">
         We send you a code
       </h1>
-      <h2 class="text-base text-zinc-500 leading-6">
+      <h2 class="text-base leading-6 text-zinc-500">
         Check your email to get your confirmation code. If you need
         to request a new code, go back and reselect a confirmation.
       </h2>

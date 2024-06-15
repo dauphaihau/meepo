@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia';
-import { IUser } from '@/types/user.ts';
-import { IMessage } from '@/types/chat.ts';
+import type { IUser } from '@/types/user.ts';
+import type { IMessage } from '@/types/chat.ts';
 
 export interface IState {
   showChatbox: boolean

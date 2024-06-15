@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import { StatusCodes } from 'http-status-codes';
 import { useMutationState } from '@tanstack/vue-query';
-import { AxiosResponse } from 'axios';
+import type { AxiosResponse } from 'axios';
 
 import Button from '@/core/components/Button.vue';
 import { useUnOrFollowUser } from '@services/user.ts';
-import { IUser } from '@/types/user.ts';
+import type { IUser } from '@/types/user.ts';
 import { useAuthStore } from '@stores/auth.ts';
 import { useDialogStore } from '@stores/dialog.ts';
 import { logger } from '@core/helpers/logger.ts';

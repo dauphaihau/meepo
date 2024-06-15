@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import Button from '@/core/components/Button.vue';
 import { useMediaQuery } from '@vueuse/core';
-import { DialogTypes, useDialogStore } from '@stores/dialog.ts';
+import type { DialogTypes } from '@stores/dialog.ts';
+import { useDialogStore } from '@stores/dialog.ts';
 
 const isLargeScreen = useMediaQuery('(min-width: 1024px)');
 const dialogStore = useDialogStore();
@@ -13,9 +14,9 @@ const showDialog = (type: DialogTypes) => {
 </script>
 
 <template>
-  <div class="border rounded-xl p-4 ">
+  <div class="rounded-xl border p-4 ">
     <div>
-      <p class="text-2xl font-black text-black mb-4">
+      <p class="mb-4 text-2xl font-black text-black">
         Join today.
       </p>
       <div class=" flex flex-col justify-center gap-3">
@@ -24,7 +25,7 @@ const showDialog = (type: DialogTypes) => {
           variant="secondary"
         >
           <svg
-            class="w-4 mr-2"
+            class="mr-2 w-4"
             xmlns="http://www.w3.org/2000/svg"
             x="0px"
             y="0px"
@@ -54,10 +55,10 @@ const showDialog = (type: DialogTypes) => {
         <Button
           v-tooltip="'Not available'"
           variant="secondary"
-          class="items-center flex"
+          class="flex items-center"
         >
           <svg
-            class="w-4 mr-2"
+            class="mr-2 w-4"
             xmlns="http://www.w3.org/2000/svg"
             x="0px"
             y="0px"
@@ -72,10 +73,10 @@ const showDialog = (type: DialogTypes) => {
       </div>
     </div>
 
-    <div class="flex items-center gap-2 my-3">
-      <div class="border-zinc-300/50 border-[0.1px] h-[1px] w-1/2 " />
+    <div class="my-3 flex items-center gap-2">
+      <div class="h-px w-1/2 border-[0.1px] border-zinc-300/50 " />
       or
-      <div class="border-zinc-300/50 border-[0.1px] w-1/2" />
+      <div class="w-1/2 border-[0.1px] border-zinc-300/50" />
     </div>
 
     <div v-if="isLargeScreen">
@@ -87,11 +88,11 @@ const showDialog = (type: DialogTypes) => {
         Sign Up
       </Button>
 
-      <p class="text-xs mt-2 text-zinc-500">
+      <p class="mt-2 text-xs text-zinc-500">
         By signing up, you agree to the <span class="text-link">Terms of Service</span> and <span class="text-link">Privacy
           Policy</span>, including <span class="text-link">Cookie Use</span>.
       </p>
-      <p class="text-base mt-4 mb-2 font-bold">
+      <p class="mb-2 mt-4 text-base font-bold">
         Already have an account?
       </p>
 

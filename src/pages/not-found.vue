@@ -8,12 +8,12 @@ const router = useRouter();
 
 <template>
   <div>
-    <div class="max-w-[20rem] mx-auto mt-20">
+    <div class="mx-auto mt-20 max-w-80">
       <div class="space-y-3">
         <div class="text-3xl font-bold">
           Hmm...this page doesn’t exist.
         </div>
-        <div class="text-zinc-500 font-semibold">
+        <div class="font-semibold text-zinc-500">
           Try searching for something else.
         </div>
         <Button @click="router.push({name: 'explore'})">

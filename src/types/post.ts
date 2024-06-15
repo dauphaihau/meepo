@@ -1,8 +1,8 @@
-import { IUser } from './user';
-import { POST_FILTER_BY } from '@/config/const.ts';
-import { z } from 'zod';
-import { postSchema } from '@/schemas/post.ts';
-import { IBaseParamsGetList } from '@/types/common.ts';
+import type { IUser } from './user';
+import type { POST_FILTER_BY } from '@/config/const.ts';
+import type { z } from 'zod';
+import type { postSchema } from '@/schemas/post.ts';
+import type { IBaseParamsGetList } from '@/types/common.ts';
 
 export type IPost = z.infer<typeof postSchema>;
 
@@ -23,10 +23,10 @@ export type IResponseGetPost = IPost & {
   sub_post?: IResponseGetPost
 };
 
-export type IResponseGetPosts = {
+export interface IResponseGetPosts {
   total_posts: number
   posts?: IResponseGetPost[]
-};
+}
 
 export type ICreatePost =
   Pick<IPost, 'content' | 'parent_id'> &
@@ -46,7 +46,7 @@ export type IUpdatePost =
     hashtags?: string[]
   };
 
-export type IResponseGetDetailPost = {
+export interface IResponseGetDetailPost {
   post: IPost & {
     parent_post?: Exclude<IResponseGetDetailPost['post'], 'parent_post'>
     sub_posts_count: number
@@ -54,7 +54,7 @@ export type IResponseGetDetailPost = {
     is_current_user_like?: boolean
     author: IUser
   }
-};
+}
 
 export interface IHashtag {
   name: string

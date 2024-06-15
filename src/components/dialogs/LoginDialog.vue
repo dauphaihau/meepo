@@ -11,7 +11,6 @@ import { useAuthStore } from '@stores/auth.ts';
 import { PAGE_PATHS } from '@config/const.ts';
 import { useDialogStore } from '@stores/dialog.ts';
 import { useNotificationStore } from '@stores/notification.ts';
-import { logger } from '@core/helpers/logger.ts';
 import FormGroup from '@core/components/forms/FormGroup.vue';
 
 const dialogStore = useDialogStore();
@@ -94,15 +93,18 @@ const openForgotPasswordDialog = () => {
     <template #panel>
       <div class="flex flex-col gap-5">
         <div class="text-center">
-          <h1 class="text-2xl mb-1 text-black">
+          <h1
+            class="mb-1 text-2xl text-black"
+          >
             Welcome Back
           </h1>
-          <p class="text-sm text-zinc-700 font-light">
+          <p class="text-sm font-light text-zinc-700">
             We're so excited to see you again!
           </p>
         </div>
         <div class="flex flex-col gap-5 ">
           <form
+            data-test="form"
             class="login-form flex flex-col gap-2"
             @submit.prevent="validate"
           >
@@ -114,6 +116,7 @@ const openForgotPasswordDialog = () => {
                 v-model="email"
                 :disabled="isLoading"
                 size="md"
+                data-test="email"
               />
             </FormGroup>
             <FormGroup
@@ -125,11 +128,12 @@ const openForgotPasswordDialog = () => {
                 type="password"
                 :disabled="isLoading"
                 size="md"
+                data-test="password"
               />
             </FormGroup>
             <div class=" flex justify-end">
               <p
-                class="text-sm mb-4 text-link"
+                class="text-link mb-4 text-sm"
                 @click="openForgotPasswordDialog"
               >
                 Forgot password?
@@ -146,7 +150,7 @@ const openForgotPasswordDialog = () => {
             </Button>
           </form>
           <div class="flex justify-center text-sm">
-            <p class="text-zinc-500 mr-1">
+            <p class="mr-1 text-zinc-500">
               New to Meepo?
             </p>
             <p

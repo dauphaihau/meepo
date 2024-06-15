@@ -39,8 +39,8 @@ const post = computed(() => {
   </div>
 
   <div v-else-if="post">
-    <div class="mb-4 relative z-[2]">
-      <h1 class="text-xl font-bold ml-3 mb-2">
+    <div class="relative z-[2] mb-4">
+      <h1 class="mb-2 ml-3 text-xl font-bold">
         Latest post
       </h1>
       <Post
@@ -49,7 +49,7 @@ const post = computed(() => {
       />
     </div>
     <div>
-      <h1 class="text-xl font-bold ml-3 mb-2">
+      <h1 class="mb-2 ml-3 text-xl font-bold">
         Version history
       </h1>
       <HistoryPostList />
