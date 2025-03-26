@@ -11,6 +11,16 @@ dist
 *.local
 .env
 
+# Yarn - Keep only essential files
+.yarn/*
+!.yarn/releases
+!.yarn/plugins
+!.yarn/sdks
+!.yarn/versions
+.yarn/cache
+.yarn/unplugged
+.yarn/build-state.yml
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
